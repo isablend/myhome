@@ -1,0 +1,2813 @@
+- id: '1537608951601' # Router on after HA reboot
+  alias: Turn Router Switch on after HA restart
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: homeassistant
+      event: start
+    - platform: template
+      value_template: "{% if is_state('sensor.google_wifi_status', 'Online') %}true{% endif %}"
+  action:
+    - delay:
+        seconds: 30
+    - service: switch.turn_on
+      entity_id: switch.router
+- id: '1537608951603' # Router Reboot
+  alias: Router Reboot
+  hide_entity: true
+  initial_state: false
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.router_reboot_time.state }}'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.router
+    service: switch.turn_off
+  - delay:
+      seconds: 30
+  - data:
+      entity_id: switch.router
+    service: switch.turn_on
+- id: '1537708951600' # Back Porch
+  alias: Turn Off Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.lights_off_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.back_porch_off_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_off
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.back_porch
+    service: light.turn_off
+- id: '1537708951601' # Front Porch
+  alias: Turn Off Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.lights_off_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.front_porch_off_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_off
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.front_porch
+    service: light.turn_off
+- id: '1537708951602' # Cinema Porch
+  alias: Turn Off Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.lights_off_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.cinema_porch_off_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_off
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.cinema_porch
+    service: light.turn_off
+- id: '1537708951603' # Office 
+  alias: Turn Off Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.lights_off_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.office_main_off_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_off
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.office_main
+    service: light.turn_off
+- id: '1537708951604' # Kitchen edge
+  alias: Turn Off Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.lights_off_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.kitchen_edge_off_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_off
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.kitchen_edge
+    service: light.turn_off
+- id: '1537708951605' # Kitchen Middle
+  alias: Turn Off Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.lights_off_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.kitchen_middle_off_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_off
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.kitchen_middle
+    service: light.turn_off
+- id: '1537708951606' # Laundy
+  alias: Turn Off Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.lights_off_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.laundry_main_off_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_off
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.laundry_main
+    service: light.turn_off
+- id: '1537708951607' # Utility
+  alias: Turn Off Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.lights_off_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.utility_main_off_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_off
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.utility_main
+    service: light.turn_off
+- id: '1537708951608' # Lounge Main
+  alias: Turn Off Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.lights_off_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.lounge_main_off_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_off
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.lounge_main
+    service: light.turn_off
+- id: '1537708951609' # Lounge Wall
+  alias: Turn Off Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.lights_off_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.lounge_wall_off_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_off
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.lounge_wall
+    service: light.turn_off
+- id: '1537708951610' # Cinema Front
+  alias: Turn Off Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.lights_off_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.cinema_front_off_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_off
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.cinema_front
+    service: light.turn_off
+- id: '1537708951611' # Cinema Back
+  alias: Turn Off Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.lights_off_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.cinema_back_off_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_off
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.cinema_back
+    service: light.turn_off
+- id: '1537708951612' # Gym
+  alias: Turn Off Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.lights_off_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.gym_main_off_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_off
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.fibaro_system_fgd212_dimmer_2_level_2
+    service: light.turn_off
+- id: '1537708951613' # Hallway
+  alias: Turn Off Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.lights_off_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.hallway_main_off_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_off
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.hallway_main
+    service: light.turn_off
+- id: '1537708951614' # Landing
+  alias: Turn Off Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.lights_off_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.landing_main_off_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_off
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.landing_main
+    service: light.turn_off
+- id: '1537708951615' # Master Bedroom Main
+  alias: Turn Off Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.lights_off_time.state }}'
+  condition: 
+    - condition: state
+      entity_id: input_boolean.master_bedroom_main_off_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_off
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.master_bedroom_main
+    service: light.turn_off
+- id: '1537708951616' # Guest Bedroom Main
+  alias: Turn Off Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.lights_off_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.guest_bedroom_main_off_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_off
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.guest_bedroom_main
+    service: light.turn_off
+- id: '1537708951617' # Ensuite
+  alias: Turn Off Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.lights_off_time.state }}'
+  condition: 
+    - condition: state
+      entity_id: input_boolean.ensuite_main_off_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_off
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.ensuite_main
+    service: light.turn_off
+- id: '1537708951618' # Bedroom 2
+  alias: Turn Off Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.lights_off_time.state }}'
+  condition: 
+    - condition: state
+      entity_id: input_boolean.bedroom_2_main_off_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_off
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.bedroom_2_main
+    service: light.turn_off
+- id: '1537708951619' # Bedroom 3
+  alias: Turn Off Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.lights_off_time.state }}'
+  condition: 
+    - condition: state
+      entity_id: input_boolean.bedroom_3_main_off_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_off
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.bedroom_3_main
+    service: light.turn_off
+- id: '1537708951620' # Loft
+  alias: Turn Off Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.lights_off_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.loft_main_off_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_off
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.loft_main
+    service: light.turn_off
+- id: '1537708951621' # Sideboard
+  alias: Turn Off Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.lights_off_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.lounge_sideboard_off_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_off
+      state: 'on'
+  action:
+  - data:
+      entity_id: switch.sideboard_light
+    service: switch.turn_off
+- id: '1547708951621' # Christmas Tree
+  alias: Turn Off Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.lights_off_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.christmas_tree_off_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_off
+      state: 'on'
+  action:
+  - data:
+      entity_id: switch.christmas_tree_lights
+    service: switch.turn_off
+- id: '1537708951622' # mb bedside
+  alias: Turn Off Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.lights_off_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.mb_bedside_off_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_off
+      state: 'on'
+  action:
+  - data:
+      entity_id: switch.mb_bedside_light
+    service: switch.turn_off
+- id: '1537708951623' # gb bedside
+  alias: Turn Off Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.lights_off_time.state }}'
+  condition: 
+    - condition: state
+      entity_id: input_boolean.gb_bedside_off_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_off
+      state: 'on'
+  action:
+  - data:
+      entity_id: switch.gb_bedside_light
+    service: switch.turn_off
+- id: '1537608951607' # Blinds Down
+  alias: Blinds Down at Sunset or Set-time
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.blinds_down_time.state }}'
+  condition: []
+  action:
+  - service: cover.close_cover
+    data:
+      entity_id:
+      - cover.cinema_blind
+      - cover.office_blind
+      - cover.cinema_door_blind
+      - cover.lounge_blind
+      - cover.guest_bedroom_blind
+      - cover.master_bedroom_blind
+      - cover.utility_blind
+      - cover.gym_blind
+      - cover.landing_blind
+  - delay:
+      minutes: 1
+  - service: cover.close_cover
+    data:
+      entity_id:
+      - cover.cinema_blind
+      - cover.office_blind
+      - cover.cinema_door_blind
+      - cover.lounge_blind
+      - cover.guest_bedroom_blind
+      - cover.master_bedroom_blind
+      - cover.utility_blind
+      - cover.gym_blind
+      - cover.landing_blind
+- id: '1537708940001' # Back Porch
+  alias: Turn On Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.key_lights_on_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.back_porch_on_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_on
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.back_porch
+    service: light.turn_on
+- id: '1537708940002' # Front Porch
+  alias: Turn On Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.key_lights_on_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.front_porch_on_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_on
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.front_porch
+    service: light.turn_on
+- id: '1537708940003' # Cinema Porch
+  alias: Turn On Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.key_lights_on_time.state }}'  
+  condition:
+    - condition: state
+      entity_id: input_boolean.cinema_porch_on_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_on
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.cinema_porch
+    service: light.turn_on
+- id: '1537708940004' # Office 
+  alias: Turn On Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.key_lights_on_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.office_main_on_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_on
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.office_main
+    service: light.turn_on
+- id: '1537708940005' # Kitchen edge
+  alias: Turn On Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.key_lights_on_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.kitchen_edge_on_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_on
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.kitchen_edge
+    service: light.turn_on
+- id: '1537708940006' # Kitchen Middle
+  alias: Turn On Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.key_lights_on_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.kitchen_middle_on_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_on
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.kitchen_middle
+    service: light.turn_on
+- id: '1537708940007' # Laundy
+  alias: Turn On Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.key_lights_on_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.laundry_main_on_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_on
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.laundry_main
+    service: light.turn_on
+- id: '1537708940008' # Utility
+  alias: Turn On Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.key_lights_on_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.utility_main_on_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_on
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.utility_main
+    service: light.turn_on
+- id: '1537708940009' # Lounge Main
+  alias: Turn On Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.key_lights_on_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.lounge_main_on_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_on
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.lounge_main
+    service: light.turn_on
+- id: '1537708940010' # Lounge Wall
+  alias: Turn On Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.key_lights_on_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.lounge_wall_on_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_on
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.lounge_wall
+    service: light.turn_on
+- id: '1537708940011' # Cinema Front
+  alias: Turn On Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.key_lights_on_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.cinema_front_on_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_on
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.cinema_front
+    service: light.turn_on
+- id: '1537708940012' # Cinema Back
+  alias: Turn On Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.key_lights_on_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.cinema_back_on_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_on
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.cinema_back
+    service: light.turn_on
+- id: '1537708940013' # Gym
+  alias: Turn On Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.key_lights_on_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.gym_main_on_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_on
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.fibaro_system_fgd212_dimmer_2_level_2
+    service: light.turn_on
+- id: '1537708940014' # Hallway
+  alias: Turn On Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.key_lights_on_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.hallway_main_on_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_on
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.hallway_main
+    service: light.turn_on
+- id: '1537708940015' # Landing
+  alias: Turn On Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.key_lights_on_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.landing_main_on_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_on
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.landing_main
+    service: light.turn_on
+- id: '1537708940016' # Master Bedroom Main
+  alias: Turn On Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.key_lights_on_time.state }}'
+  condition: 
+    - condition: state
+      entity_id: input_boolean.master_bedroom_main_on_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_on
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.master_bedroom_main
+    service: light.turn_on
+- id: '1537708940017' # Guest Bedroom Main
+  alias: Turn On Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.key_lights_on_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.guest_bedroom_main_on_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_on
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.guest_bedroom_main
+    service: light.turn_on
+- id: '1537708940018' # Ensuite
+  alias: Turn On Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.key_lights_on_time.state }}'
+  condition: 
+    - condition: state
+      entity_id: input_boolean.ensuite_main_on_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_on
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.ensuite_main
+    service: light.turn_on
+- id: '1537708940019' # Bedroom 2
+  alias: Turn On Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.key_lights_on_time.state }}'
+  condition: 
+    - condition: state
+      entity_id: input_boolean.bedroom_2_main_on_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_on
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.bedroom_2_main
+    service: light.turn_on
+- id: '1537708940020' # Bedroom 3
+  alias: Turn On Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.key_lights_on_time.state }}'
+  condition: 
+    - condition: state
+      entity_id: input_boolean.bedroom_3_main_on_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_on
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.bedroom_3_main
+    service: light.turn_on
+- id: '1537708940021' # Loft
+  alias: Turn On Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.key_lights_on_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.loft_main_on_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_on
+      state: 'on'
+  action:
+  - data:
+      entity_id: light.loft_main
+    service: light.turn_on
+- id: '1537708940022' # Sideboard
+  alias: Turn On Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.key_lights_on_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.lounge_sideboard_on_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_on
+      state: 'on'
+  action:
+  - data:
+      entity_id: switch.sideboard_light
+    service: switch.turn_on
+- id: '1537708940022' # Christmas Tree
+  alias: Turn On Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.key_lights_on_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.christmas_tree_on_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_on
+      state: 'on'
+  action:
+  - data:
+      entity_id: switch.christmas_tree_lights
+    service: switch.turn_on
+- id: '1537708940023' # mb bedside
+  alias: Turn On Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.key_lights_on_time.state }}'
+  condition:
+    - condition: state
+      entity_id: input_boolean.mb_bedside_on_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_on
+      state: 'on'
+  action:
+  - data:
+      entity_id: switch.mb_bedside_light
+    service: switch.turn_on
+- id: '1537708940024' # gb bedside
+  alias: Turn On Lights
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - event: sunset
+      platform: sun
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.key_lights_on_time.state }}'
+  condition: 
+    - condition: state
+      entity_id: input_boolean.gb_bedside_on_key
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.key_lights_on
+      state: 'on'
+  action:
+  - data:
+      entity_id: switch.gb_bedside_light
+    service: switch.turn_on
+- id: '1537608951615'
+  alias: Blinds up at settime if sun has already risen during the week
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.blinds_up_weekday_time.state }}'
+  condition:
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  - condition: sun
+    after: sunrise
+  action:
+  - service: cover.open_cover
+    data:
+      entity_id:
+      - cover.cinema_blind
+      - cover.office_blind
+      - cover.cinema_door_blind
+      - cover.lounge_blind
+      - cover.guest_bedroom_blind
+      - cover.master_bedroom_blind
+      - cover.utility_blind
+      - cover.gym_blind
+      - cover.landing_blind
+  - delay:
+      minutes: 1
+  - service: cover.open_cover
+    data:
+      entity_id:
+      - cover.cinema_blind
+      - cover.office_blind
+      - cover.cinema_door_blind
+      - cover.lounge_blind
+      - cover.guest_bedroom_blind
+      - cover.master_bedroom_blind
+      - cover.utility_blind
+      - cover.gym_blind
+      - cover.landing_blind
+- id: '1537608951617'
+  alias: Blinds up at sunrise if after settime during the week
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunrise
+  condition:
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  - condition: template
+    value_template: '{{ states.sensor.time.state >= states.sensor.blinds_up_weekday_time.state }}'
+  action:
+  - service: cover.open_cover
+    data:
+      entity_id:
+      - cover.cinema_blind
+      - cover.office_blind
+      - cover.cinema_door_blind
+      - cover.lounge_blind
+      - cover.guest_bedroom_blind
+      - cover.master_bedroom_blind
+      - cover.utility_blind
+      - cover.gym_blind
+      - cover.landing_blind
+  - delay:
+      minutes: 1
+  - service: cover.open_cover
+    data:
+      entity_id:
+      - cover.cinema_blind
+      - cover.office_blind
+      - cover.cinema_door_blind
+      - cover.lounge_blind
+      - cover.guest_bedroom_blind
+      - cover.master_bedroom_blind
+      - cover.utility_blind
+      - cover.gym_blind
+      - cover.landing_blind
+- id: '1537608951619'
+  alias: Blinds up at settime if sun has already risen at the weekend
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.blinds_up_weekend_time.state }}'
+  condition:
+  - condition: time
+    weekday:
+    - sat
+    - sun
+  - condition: sun
+    after: sunrise
+  action:
+  - service: cover.open_cover
+    data:
+      entity_id:
+      - cover.cinema_blind
+      - cover.office_blind
+      - cover.cinema_door_blind
+      - cover.lounge_blind
+      - cover.guest_bedroom_blind
+      - cover.master_bedroom_blind
+      - cover.utility_blind
+      - cover.gym_blind
+      - cover.landing_blind
+  - delay:
+      minutes: 1
+  - service: cover.open_cover
+    data:
+      entity_id:
+      - cover.cinema_blind
+      - cover.office_blind
+      - cover.cinema_door_blind
+      - cover.lounge_blind
+      - cover.guest_bedroom_blind
+      - cover.master_bedroom_blind
+      - cover.utility_blind
+      - cover.gym_blind
+      - cover.landing_blind
+- id: '1537608951621'
+  alias: Blinds up at sunrise if after settime at the weekend
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunrise
+  condition:
+  - condition: time
+    weekday:
+    - sat
+    - sun
+  - condition: template
+    value_template: '{{ states.sensor.time.state >= states.sensor.blinds_up_weekend_time.state }}'
+  action:
+  - service: cover.open_cover
+    data:
+      entity_id:
+      - cover.cinema_blind
+      - cover.office_blind
+      - cover.cinema_door_blind
+      - cover.lounge_blind
+      - cover.guest_bedroom_blind
+      - cover.master_bedroom_blind
+      - cover.utility_blind
+      - cover.gym_blind
+      - cover.landing_blind
+  - delay:
+      minutes: 1
+  - service: cover.open_cover
+    data:
+      entity_id:
+      - cover.cinema_blind
+      - cover.office_blind
+      - cover.cinema_door_blind
+      - cover.lounge_blind
+      - cover.guest_bedroom_blind
+      - cover.master_bedroom_blind
+      - cover.utility_blind
+      - cover.gym_blind
+      - cover.landing_blind
+- id: '1537608951623'
+  alias: Harmony Set Input Select On Start
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    - delay:
+        seconds: 30
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.harmony
+        option: '{{ states.remote.harmony.attributes.current_activity }}'
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.cinema_tv
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.cinema_humax
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.cinema_bluray
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.cinema_prime
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.cinema_ps4
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.big_humax
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.big_bluray
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.big_prime
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.big_ps4
+- id: '1537608951625'
+  alias: 'Powered off from the Harmony Hub'
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_select.cinema
+  condition:
+    condition: template
+    value_template: '{{ trigger.to_state.attributes.current_activity == "Powered Off" }}'
+  action:
+    - service: input_select.select_option
+      entity_id: input_select.cinema
+      data:
+        option: "Powered Off" 
+- id: '1537608951627'
+  alias: "LG TV started from Harmony Hub"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: remote.cinema
+  condition:
+    condition: template
+    value_template: '{{ trigger.to_state.attributes.current_activity == "Watch TV" }}'
+  action:
+    - service: input_select.select_option
+      entity_id: input_select.cinema
+      data:
+        option: "Watch TV"
+- id: '1537608951629'
+  alias: "Humax started from Harmony Hub"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: remote.cinema
+  condition:
+    condition: template
+    value_template: '{{ trigger.to_state.attributes.current_activity == "Watch Humax" }}'
+  action:
+    - service: input_select.select_option
+      entity_id: input_select.cinema
+      data:
+        option: "Watch Humax"
+- id: '1537608951631'
+  alias: "BluRay started from Harmony Hub"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: remote.cinema
+  condition:
+    condition: template
+    value_template: '{{ trigger.to_state.attributes.current_activity == "Watch BluRay" }}'
+  action:
+    - service: input_select.select_option
+      entity_id: input_select.cinema
+      data:
+        option: "Watch BluRay"
+- id: '1537608951633'
+  alias: "Amazon Prime started from Harmony Hub"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: remote.cinema
+  condition:
+    condition: template
+    value_template: '{{ trigger.to_state.attributes.current_activity == "Watch Amazon Prime" }}'
+  action:
+    - service: input_select.select_option
+      entity_id: input_select.cinema
+      data:
+        option: "Watch Amazon Prime"  
+- id: '1537608951635'
+  alias: "Playstation 4 started from Harmony Hub"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: remote.cinema
+  condition:
+    condition: template
+    value_template: '{{ trigger.to_state.attributes.current_activity == "Play Playstation 4" }}'
+  action:
+    - service: input_select.select_option
+      entity_id: input_select.cinema
+      data:
+        option: "Play Playstation 4"
+- id: '1537608951637'
+  alias: "Big Screen Humax started from Harmony Hub"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: remote.cinema
+  condition:
+    condition: template
+    value_template: '{{ trigger.to_state.attributes.current_activity == "Big Screen Humax" }}'
+  action:
+    - service: input_select.select_option
+      entity_id: input_select.cinema
+      data:
+        option: "Big Screen Humax"
+- id: '1537608951639'
+  alias: "Big Screen BluRay started from Harmony Hub"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: remote.cinema
+  condition:
+    condition: template
+    value_template: '{{ trigger.to_state.attributes.current_activity == "Big Screen BluRay" }}'
+  action:
+    - service: input_select.select_option
+      entity_id: input_select.cinema
+      data:
+        option: "Big Screen BluRay"
+- id: '1537608951641'
+  alias: "Big Screen Amazon Prime started from Harmony Hub"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: remote.cinema
+  condition:
+    condition: template
+    value_template: '{{ trigger.to_state.attributes.current_activity == "Big Screen Amazon Prime" }}'
+  action:
+    - service: input_select.select_option
+      entity_id: input_select.cinema
+      data:
+        option: "Big Screen Amazon Prime"
+- id: '1537608951643'
+  alias: "Big Screen Playstation 4 started from Harmony Hub"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: remote.cinema
+  condition:
+    condition: template
+    value_template: '{{ trigger.to_state.attributes.current_activity == "Big Screen Playstation 4" }}'
+  action:
+    - service: input_select.select_option
+      entity_id: input_select.cinema
+      data:
+        option: "Big Screen Playstation 4"
+- id: '1537608951645'
+  alias: "LGTV started from HASS"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_select.cinema
+    to: 'Watch TV'
+  action:
+    - service: script.turn_on
+      entity_id: script.tv_turned_on
+- id: '1537608951647'
+  alias: "Humax started from HASS"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_select.cinema
+    to: 'Watch Humax'
+  action:
+    - service: script.turn_on
+      entity_id: script.humax_turned_on
+- id: '1537608951649'
+  alias: "BlueRay started from HASS"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_select.cinema
+    to: 'Watch BluRay'
+  action:
+    - service: script.turn_on
+      entity_id: script.bluray_turned_on
+- id: '1537608951651'
+  alias: "Amazon Prime started from HASS"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_select.cinema
+    to: 'Watch Amazon Prime'
+  action:
+    - service: script.turn_on
+      entity_id: script.prime_turned_on
+- id: '1537608951653'
+  alias: "Playstation 4 started from HASS"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_select.cinema
+    to: 'Play Playstation 4'
+  action:
+    - service: script.turn_on
+      entity_id: script.ps4_turned_on
+- id: '1537608951655'
+  alias: "Big Screen Humax started from HASS"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_select.cinema
+    to: 'Big Screen Humax'
+  action:
+    - service: script.turn_on
+      entity_id: script.bighumax_turned_on
+- id: '1537608951657'
+  alias: "Big Screen Bluray started from HASS"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_select.cinema
+    to: 'Big Screen BluRay'
+  action:
+    - service: script.turn_on
+      entity_id: script.bigbluray_turned_on
+- id: '1537608951659'
+  alias: "Big Screen Amazon Prime started from HASS"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_select.cinema
+    to: 'Big Screen Amazon Prime'
+  action:
+    - service: script.turn_on
+      entity_id: script.bigprime_turned_on
+- id: '1537608951661'
+  alias: "Big Screen Playstation started from HASS"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_select.cinema
+    to: 'Big Screen Playstation 4'
+  action:
+    - service: script.turn_on
+      entity_id: script.bigps4_turned_on
+- id: '1537608951663'
+  alias: "Powered off started from HASS"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_select.cinema
+    to: 'Powered Off'
+  action:
+    - service: script.turn_on
+      entity_id: script.tv_turned_off
+- id: '1537608951665'
+  alias: "Alexa Office Light Changed"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: light.office_main
+  condition:
+  - condition: template
+    value_template: '{{ states.input_boolean.alexa_notification.state == "on" }}'    
+  action:
+    service: script.turn_on
+    entity_id: script.alexa_office_main
+- id: '1537608951667'
+  hide_entity: true
+  initial_state: true
+  alias: "Alexa Kitchen Lights Changed"
+  trigger:
+    - platform: state
+      entity_id: light.kitchen_edge
+    - platform: state
+      entity_id: light.kitchen_middle
+  condition:
+  - condition: template
+    value_template: '{{ states.input_boolean.alexa_notification.state == "on" }}'    
+  action:
+    service: script.turn_on
+    entity_id: script.alexa_kitchen_light
+- id: '1537608951669'
+  alias: "Alexa Utility Light Changed"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: light.utility_main
+  condition:
+  - condition: template
+    value_template: '{{ states.input_boolean.alexa_notification.state == "on" }}'    
+  action:
+    service: script.turn_on
+    entity_id: script.alexa_utility_light
+- id: '1537608951671'
+  alias: "Alexa Laundry Light Changed"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: light.laundry_main
+  condition:
+  - condition: template
+    value_template: '{{ states.input_boolean.alexa_notification.state == "on" }}'    
+  action:
+    service: script.turn_on
+    entity_id: script.alexa_laundry_light
+- id: '1537608951673'
+  alias: "Alexa Back Porch Light Changed"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: light.back_porch
+  condition:
+  - condition: template
+    value_template: '{{ states.input_boolean.alexa_notification.state == "on" }}'    
+  action:
+    service: script.turn_on
+    entity_id: script.alexa_back_porch_light
+- id: '1537608951675'
+  alias: "Alexa Front Porch Light Changed"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: light.front_porch
+  condition:
+  - condition: template
+    value_template: '{{ states.input_boolean.alexa_notification.state == "on" }}'    
+  action:
+    service: script.turn_on
+    entity_id: script.alexa_front_porch_light
+- id: '1537608951677'
+  alias: "Alexa Hallway Light Changed"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: light.hallway_main
+  condition:
+  - condition: template
+    value_template: '{{ states.input_boolean.alexa_notification.state == "on" }}'    
+  action:
+    service: script.turn_on
+    entity_id: script.alexa_hallway_light
+- id: '1537608951679'
+  alias: "Alexa Lounge Light Changed"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: light.lounge_main
+    - platform: state
+      entity_id: light.lounge_wall
+  condition:
+  - condition: template
+    value_template: '{{ states.input_boolean.alexa_notification.state == "on" }}'    
+  action:
+    service: script.turn_on
+    entity_id: script.alexa_lounge_light
+- id: '1537608951681'
+  alias: "Alexa Cinema Light Changed"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: light.cinema_back
+    - platform: state
+      entity_id: light.cinema_front
+  condition:
+  - condition: template
+    value_template: '{{ states.input_boolean.alexa_notification.state == "on" }}'    
+  action:
+    service: script.turn_on
+    entity_id: script.alexa_cinema_light
+- id: '1537608951683'
+  alias: "Alexa Cinema Porch Light Changed"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: light.cinema_porch
+  condition:
+  - condition: template
+    value_template: '{{ states.input_boolean.alexa_notification.state == "on" }}'    
+  action:
+    service: script.turn_on
+    entity_id: script.alexa_cinema_porch_light
+- id: '1537608951685'
+  alias: "Alexa Gym Light Changed"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: light.fibaro_system_fgd212_dimmer_2_level_2
+  condition:
+  - condition: template
+    value_template: '{{ states.input_boolean.alexa_notification.state == "on" }}'    
+  action:
+    service: script.turn_on
+    entity_id: script.alexa_gym_light
+- id: '1537608951687'
+  alias: "Alexa Master Bedroom Light Changed"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: light.master_bedroom_main
+  condition:
+  - condition: template
+    value_template: '{{ states.input_boolean.alexa_notification.state == "on" }}'    
+  action:
+    service: script.turn_on
+    entity_id: script.alexa_master_bedroom_light
+- id: '1537608951689'
+  alias: "Alexa Ensuite Light Changed"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: light.ensuite_main
+  condition:
+  - condition: template
+    value_template: '{{ states.input_boolean.alexa_notification.state == "on" }}'    
+  action:
+    service: script.turn_on
+    entity_id: script.alexa_ensuite_light
+- id: '1537608951691'
+  alias: "Alexa Bedroom 2 Light Changed"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: light.bedroom_2_main
+  condition:
+  - condition: template
+    value_template: '{{ states.input_boolean.alexa_notification.state == "on" }}'    
+  action:
+    service: script.turn_on
+    entity_id: script.alexa_bedroom_2_light
+- id: '1537608951693'
+  alias: "Alexa Bedroom 3 Light Changed"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: light.bedroom_3_main
+  condition:
+  - condition: template
+    value_template: '{{ states.input_boolean.alexa_notification.state == "on" }}'    
+  action:
+    service: script.turn_on
+    entity_id: script.alexa_bedroom_3_light
+- id: '1537608951695'
+  alias: "Alexa Guest Bedroom Light Changed"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: light.guest_bedroom_main
+  condition:
+  - condition: template
+    value_template: '{{ states.input_boolean.alexa_notification.state == "on" }}'    
+  action:
+    service: script.turn_on
+    entity_id: script.alexa_guest_bedroom_light
+- id: '1537608951697'
+  alias: "Alexa Landing Light Changed"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: light.landing_main
+  condition:
+  - condition: template
+    value_template: '{{ states.input_boolean.alexa_notification.state == "on" }}'    
+  action:
+    service: script.turn_on
+    entity_id: script.alexa_landing_light
+- id: '1537608951699'
+  alias: "Alexa Loft Light Changed"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: light.loft_main
+  condition:
+  - condition: template
+    value_template: '{{ states.input_boolean.alexa_notification.state == "on" }}'    
+  action:
+    service: script.turn_on
+    entity_id: script.alexa_loft_light
+- id: '1537608951701'
+  alias: "Alexa Announcement Office"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_text.alexa_announcement
+  condition:
+  - condition: template
+    value_template: '{{ states.input_boolean.alexa_office.state == "on" }}'    
+  action:
+    service: script.turn_on
+    entity_id: script.alexa_announcement_office
+- id: '1537608951703'
+  alias: "Alexa Announcement Kitchen"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_text.alexa_announcement
+  condition:
+  - condition: template
+    value_template: '{{ states.input_boolean.alexa_kitchen.state == "on" }}'    
+  action:
+    service: script.turn_on
+    entity_id: script.alexa_announcement_kitchen
+- id: '1537608951705'
+  alias: "Alexa Announcement Lounge"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_text.alexa_announcement
+  condition:
+  - condition: template
+    value_template: '{{ states.input_boolean.alexa_lounge.state == "on" }}'    
+  action:
+    service: script.turn_on
+    entity_id: script.alexa_announcement_lounge
+- id: '1537608951707'
+  alias: "Alexa Announcement Cinema"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_text.alexa_announcement
+  condition:
+  - condition: template
+    value_template: '{{ states.input_boolean.alexa_cinema.state == "on" }}'    
+  action:
+    service: script.turn_on
+    entity_id: script.alexa_announcement_cinema
+- id: '1537608951709'
+  alias: "Alexa Announcement Master Bedroom"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_text.alexa_announcement
+  condition:
+  - condition: template
+    value_template: '{{ states.input_boolean.alexa_master_bedroom.state == "on" }}'    
+  action:
+    service: script.turn_on
+    entity_id: script.alexa_announcement_master_bedroom
+- id: '1537608951711'
+  alias: Window Vent Open
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.window_vent_open_time.state }}'
+  condition: []
+  action:
+    service: script.turn_on
+    entity_id: script.open_vents
+- id: '1537608951713'
+  alias: Window Vent Closed
+  hide_entity: true
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.window_vent_close_time.state }}'
+  condition: []
+  action:
+    service: script.turn_on
+    entity_id: script.close_vents
+- id: '1537608951715'
+  alias: "Alexa Tourettes On"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.alexa_tourettes
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: script.turn_on
+    entity_id: script.alexa_tourettes_on
+- id: '1537608951717'
+  alias: "Alexa Tourettes Off"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.alexa_tourettes
+      from: 'on'
+      to: 'off'
+  condition: []
+  action:
+    service: script.turn_on
+    entity_id: script.alexa_tourettes_off
+#- id: '1537608951719'
+#  alias: "Turn alarm on when robin and julie are away"
+#  hide_entity: true
+#  initial_state: true
+#  trigger:
+#    - platform: template
+#      value_template: '{{ states.device_tracker.robin.state != "home" and states.device_tracker.julie.state != "home" }}' 
+#  condition:
+#  - condition: template
+#    value_template: '{{ states.alarm_control_panel.visonic_alarm.state == "disarmed" }}'
+#  action:
+#    service: alarm_control_panel.alarm_arm_home
+- id: '1537608951721'
+  alias: "molly scheduled clean"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.molly_start_time.state }}'
+  condition:
+    condition: and
+    conditions:
+      - condition: or
+        conditions:
+        - condition: and
+          conditions:
+            - condition: time
+              weekday:
+              - mon
+            - condition: template
+              value_template: '{{ states.input_boolean.molly_monday.state == "on" }}'
+        - condition: and
+          conditions:
+            - condition: time
+              weekday:
+              - tue
+            - condition: template
+              value_template: '{{ states.input_boolean.molly_tuesday.state == "on" }}'
+        - condition: and
+          conditions:
+            - condition: time
+              weekday:
+              - wed
+            - condition: template
+              value_template: '{{ states.input_boolean.molly_wednesday.state == "on" }}'
+        - condition: and
+          conditions:
+            - condition: time
+              weekday:
+              - thu
+            - condition: template
+              value_template: '{{ states.input_boolean.molly_thursday.state == "on" }}'
+        - condition: and
+          conditions:
+            - condition: time
+              weekday:
+              - fri
+            - condition: template
+              value_template: '{{ states.input_boolean.molly_friday.state == "on" }}'
+        - condition: and
+          conditions:
+            - condition: time
+              weekday:
+              - sat
+            - condition: template
+              value_template: '{{ states.input_boolean.molly_saturday.state == "on" }}'
+        - condition: and
+          conditions:
+            - condition: time
+              weekday:
+              - sun
+            - condition: template
+              value_template: '{{ states.input_boolean.molly_sunday.state == "on" }}'
+      - condition: and
+        conditions:
+        - condition: template
+          value_template: '{{ states.alarm_control_panel.visonic_alarm.state != "armed_away" }}'
+        - condition: or
+          conditions:
+          - condition: template
+            value_template: '{{ states.input_boolean.molly_noone_home.state == "on" and states.device_tracker.robin.state != "home" and states.device_tracker.julie.state != "home" }}'
+          - condition: template
+            value_template: '{{ states.input_boolean.molly_noone_home.state == "off" }}'  
+  action:
+    service: vacuum.start
+    entity_id: vacuum.molly
+- id: '1537608951723'
+  alias: "Turn the TV On from Alexa"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.cinema_tv
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_select.select_option
+    entity_id: input_select.cinema
+    data:
+      option: "Watch TV"
+- id: '1537608951725'
+  alias: "Turn the TV Off from Alexa"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.cinema_tv
+      from: 'on'
+      to: 'off'
+  condition: []
+  action:
+    service: input_select.select_option
+    entity_id: input_select.cinema
+    data:
+      option: "Powered Off"
+- id: '1537608951727'
+  alias: "Turn the Humax On from Alexa"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.cinema_humax
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_select.select_option
+    entity_id: input_select.cinema
+    data:
+      option: "Watch Humax"
+- id: '1537608951729'
+  alias: "Turn the Humax Off from Alexa"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.cinema_humax
+      from: 'on'
+      to: 'off'
+  condition: []
+  action:
+    service: input_select.select_option
+    entity_id: input_select.cinema
+    data:
+      option: "Powered Off"
+- id: '1537608951731'
+  alias: "Turn the BluRay On from Alexa"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.cinema_bluray
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_select.select_option
+    entity_id: input_select.cinema
+    data:
+      option: "Watch BluRay"
+- id: '1537608951733'
+  alias: "Turn the Bluray Off from Alexa"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.cinema_bluray
+      from: 'on'
+      to: 'off'
+  condition: []
+  action:
+    service: input_select.select_option
+    entity_id: input_select.cinema
+    data:
+      option: "Powered Off"
+- id: '1537608951735'
+  alias: "Turn Amazon Prime On from Alexa"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.cinema_prime
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_select.select_option
+    entity_id: input_select.cinema
+    data:
+      option: "Watch Amazon Prime"
+- id: '1537608951737'
+  alias: "Turn Amazon Prime Off from Alexa"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.cinema_prime
+      from: 'on'
+      to: 'off'
+  condition: []
+  action:
+    service: input_select.select_option
+    entity_id: input_select.cinema
+    data:
+      option: "Powered Off"
+- id: '1537608951739'
+  alias: "Turn Playstation 4 On from Alexa"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.cinema_ps4
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_select.select_option
+    entity_id: input_select.cinema
+    data:
+      option: "Play Playstation 4"
+- id: '1537608951741'
+  alias: "Turn Playstation 4 Off from Alexa"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.cinema_ps4
+      from: 'on'
+      to: 'off'
+  condition: []
+  action:
+    service: input_select.select_option
+    entity_id: input_select.cinema
+    data:
+      option: "Powered Off"
+- id: '1537608951743'
+  alias: "Turn Big Screen Humax On from Alexa"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.big_humax
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_select.select_option
+    entity_id: input_select.cinema
+    data:
+      option: "Big Screen Humax"
+- id: '1537608951745'
+  alias: "Turn Big Screen Humax Off from Alexa"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.big_humax
+      from: 'on'
+      to: 'off'
+  condition: []
+  action:
+    service: input_select.select_option
+    entity_id: input_select.cinema
+    data:
+      option: "Powered Off"
+- id: '1537608951747'
+  alias: "Turn Big Screen BluRay On from Alexa"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.big_bluray
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_select.select_option
+    entity_id: input_select.cinema
+    data:
+      option: "Big Screen BluRay"
+- id: '1537608951749'
+  alias: "Turn Big Screen Bluray Off from Alexa"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.big_bluray
+      from: 'on'
+      to: 'off'
+  condition: []
+  action:
+    service: input_select.select_option
+    entity_id: input_select.cinema
+    data:
+      option: "Powered Off"
+- id: '1537608951751'
+  alias: "Turn Big Screen Amazon Prime On from Alexa"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.big_prime
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_select.select_option
+    entity_id: input_select.cinema
+    data:
+      option: "Big Screen Amazon Prime"
+- id: '1537608951753'
+  alias: "Turn Big Screen Amazon Prime Off from Alexa"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.big_prime
+      from: 'on'
+      to: 'off'
+  condition: []
+  action:
+    service: input_select.select_option
+    entity_id: input_select.cinema
+    data:
+      option: "Powered Off"
+- id: '1537608951755'
+  alias: "Turn Big Screen Playstation 4 On from Alexa"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.big_ps4
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_select.select_option
+    entity_id: input_select.cinema
+    data:
+      option: "Big Screen Playstation 4"
+- id: '1537608951757'
+  alias: "Turn Big Screen Playstation 4 Off from Alexa"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.big_ps4
+      from: 'on'
+      to: 'off'
+  condition: []
+  action:
+    service: input_select.select_option
+    entity_id: input_select.cinema
+    data:
+      option: "Powered Off"
+- id: '1537608951901'
+  alias: "Switch front_porch on-key on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.front_porch_on_key
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.front_porch_holiday
+- id: '1537608951902'
+  alias: "Switch back_porch on-key on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.back_porch_on_key
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.back_porch_holiday
+- id: '1537608951903'
+  alias: "Switch cinema_porch on-key on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.cinema_porch_on_key
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.cinema_porch_holiday
+- id: '1537608951904'
+  alias: "Switch office on-key on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.office_main_on_key
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.office_main_holiday
+- id: '1537608951905'
+  alias: "Switch hallway on-key on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.hallway_main_on_key
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.hallway_main_holiday
+- id: '1537608951906'
+  alias: "Switch kitchen_edge on-key on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.kitchen_edge_on_key
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.kitchen_edge_holiday
+- id: '1537608951907'
+  alias: "Switch kitchen_middle on-key on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.kitchen_middle_on_key
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.kitchen_middle_holiday
+- id: '1537608951908'
+  alias: "Switch utility_main on-key on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.utility_main_on_key
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.utility_main_holiday
+- id: '1537608951909'
+  alias: "Switch laundry_main on-key on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.laundry_main_on_key
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.laundry_main_holiday
+- id: '1537608951910'
+  alias: "Switch lounge_main on-key on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.lounge_main_on_key
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.lounge_main_holiday
+- id: '1537608951911'
+  alias: "Switch lounge_wall on-key on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.lounge_wall_on_key
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.lounge_wall_holiday
+- id: '1537608951912'
+  alias: "Switch cinema_front on-key on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.cinema_front_on_key
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.cinema_front_holiday
+- id: '1537608951913'
+  alias: "Switch cinema_back on-key on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.cinema_back_on_key
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.cinema_back_holiday
+- id: '1537608951914'
+  alias: "Switch gym_main on-key on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.gym_main_on_key
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.gym_main_holiday
+- id: '1537608951915'
+  alias: "Switch master_bedroom_main on-key on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.master_bedroom_main_on_key
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.master_bedroom_main_holiday
+- id: '1537608951916'
+  alias: "Switch ensuite_main on-key on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.ensuite_main_on_key
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.ensuite_main_holiday
+- id: '1537608951917'
+  alias: "Switch bedroom_2_main on-key on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedroom_2_main_on_key
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.bedroom_2_main_holiday
+- id: '1537608951918'
+  alias: "Switch bedroom_3_main on-key on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedroom_3_main_on_key
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.bedroom_3_main_holiday
+- id: '1537608951919'
+  alias: "Switch guest_bedroom_main on-key on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.guest_bedroom_main_on_key
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.guest_bedroom_main_holiday
+- id: '1537608951920'
+  alias: "Switch landing_main on-key on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.landing_main_on_key
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.landing_main_holiday
+- id: '1537608951921'
+  alias: "Switch input_boolean.loft_main on-key on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.loft_main_on_key
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.loft_main_holiday
+- id: '1537608951922'
+  alias: "Switch lounge_sideboard on-key on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.lounge_sideboard_on_key
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.lounge_sideboard_holiday
+- id: '1537608951923'
+  alias: "Switch mb_bedside on-key on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.mb_bedside_on_key
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.mb_bedside_holiday
+- id: '1537608951924'
+  alias: "Switch gb_bedside on-key on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.gb_bedside_on_key
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.gb_bedside_holiday
+- id: '1537608952901'
+  alias: "Switch front_porch holiday on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.front_porch_holiday
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.front_porch_on_key
+- id: '1537608952902'
+  alias: "Switch back_porch holiday on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.back_porch_holiday
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.back_porch_on_key
+- id: '1537608952903'
+  alias: "Switch cinema_porch holiday on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.cinema_porch_holiday
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.cinema_porch_on_key
+- id: '1537608952904'
+  alias: "Switch office holiday on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.office_main_holiday
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.office_main_on_key
+- id: '1537608952905'
+  alias: "Switch hallway holiday on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.hallway_main_holiday
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.hallway_main_on_key
+- id: '1537608952906'
+  alias: "Switch kitchen_edge holiday on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.kitchen_edge_holiday
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.kitchen_edge_on_key
+- id: '1537608952907'
+  alias: "Switch kitchen_middle holiday on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.kitchen_middle_holiday
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.kitchen_middle_on_key
+- id: '1537608952908'
+  alias: "Switch utility_main holiday on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.utility_main_holiday
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.utility_main_on_key
+- id: '1537608952909'
+  alias: "Switch laundry_main holiday on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.laundry_main_holiday
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.laundry_main_on_key
+- id: '1537608952910'
+  alias: "Switch lounge_main holiday on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.lounge_main_holiday
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.lounge_main_on_key
+- id: '1537608952911'
+  alias: "Switch lounge_wall holiday on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.lounge_wall_holiday
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.lounge_wall_on_key
+- id: '1537608952912'
+  alias: "Switch cinema_front holiday on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.cinema_front_holiday
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.cinema_front_on_key
+- id: '1537608952913'
+  alias: "Switch cinema_back holiday on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.cinema_back_holiday
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.cinema_back_on_key
+- id: '1537608952914'
+  alias: "Switch gym_main holiday on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.gym_main_holiday
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.gym_main_on_key
+- id: '1537608952915'
+  alias: "Switch master_bedroom_main holiday on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.master_bedroom_main_holiday
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.master_bedroom_main_on_key
+- id: '1537608952916'
+  alias: "Switch ensuite_main holiday on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.ensuite_main_holiday
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.ensuite_main_on_key
+- id: '1537608952917'
+  alias: "Switch bedroom_2_main holiday on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedroom_2_main_holiday
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.bedroom_2_main_on_key
+- id: '1537608952918'
+  alias: "Switch bedroom_3_main holiday on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedroom_3_main_holiday
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.bedroom_3_main_on_key
+- id: '1537608952919'
+  alias: "Switch guest_bedroom_main holiday on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.guest_bedroom_main_holiday
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.guest_bedroom_main_on_key
+- id: '1537608952920'
+  alias: "Switch landing_main holiday on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.landing_main_holiday
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.landing_main_on_key
+- id: '1537608952921'
+  alias: "Switch input_boolean.loft_main holiday on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.loft_main_holiday
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.loft_main_on_key
+- id: '1537608952922'
+  alias: "Switch lounge_sideboard holiday on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.lounge_sideboard_holiday
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.lounge_sideboard_on_key
+- id: '1537608952923'
+  alias: "Switch mb_bedside holiday on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.mb_bedside_holiday
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.mb_bedside_on_key
+- id: '1537608952924'
+  alias: "Switch gb_bedside holiday on"
+  hide_entity: true
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.gb_bedside_holiday
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.gb_bedside_on_key

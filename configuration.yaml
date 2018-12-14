@@ -1,0 +1,1207 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret do_latitude
+  longitude: !secret do_longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: !secret do_elevation 
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/London
+  # Customization file
+  customize: !include customize.yaml
+#  packages: !include_dir-named packages
+
+# check for new custom components
+custom_updater:
+  show_installable: true
+  hide_sensor: false
+  track:
+    - cards
+    - python_scripts
+
+lovelace:
+  mode: yaml
+
+zone:
+  - name: Work-Robin
+    latitude: !secret robin_work_lat
+    longitude: !secret robin_work_long
+    radius: 150
+    icon: mdi:office-building
+
+  - name: Work-Julie
+    latitude: !secret julie_work_lat
+    longitude: !secret julie_work_long
+    radius: 150
+    icon: mdi:hospital
+
+# This will override the default home zone
+  - name: Home
+    latitude: !secret do_latitude
+    longitude: !secret do_longitude
+    radius: 150
+    icon: mdi:account-multiple
+
+# Show links to resources in log and frontend
+# introduction:
+
+# enable iOS notification
+# ios:
+
+# Google Calendar Access
+google:
+  client_id: !secret google_client_id
+  client_secret: !secret google_client_secret
+
+# telegram_bot:
+#   - platform: polling
+#     api_key: !secret telegram_api
+#     allowed_chat_ids:
+
+# notify:
+#   - name: 
+#     platform: telegram
+
+api:
+
+# define what entities are exposed to Alexa to enable control
+alexa:
+  smart_home:
+    filter:
+      include_entities:
+        - light.office_main
+        - light.kitchen_edge
+        - light.kitchen_middle
+        - light.back_porch
+        - light.laundry_main
+        - light.utility_main
+        - light.lounge_main
+        - light.lounge_wall
+        - light.cinema_porch
+        - light.cinema_front
+        - light.cinema_back
+        - light.front_porch
+        - light.hallway_main
+        - light.landing_main
+        - light.master_bedroom_main
+        - light.guest_bedroom_main
+        - light.ensuite_main
+        - light.bedroom_2_main
+        - light.bedroom_3_main
+        - light.loft_main
+        - switch.sideboard_light
+        - switch.mb_bedside_light
+        - switch.gb_bedside_light
+        - switch.christmas_tree_lights
+        - cover.office_blind
+        - cover.cinema_blind
+        - cover.cinema_door_blind
+        - cover.gym_blind
+        - cover.landing_blind
+        - cover.lounge_blind
+        - cover.guest_bedroom_blind
+        - cover.master_bedroom_blind
+        - cover.utility_blind
+        - cover.fibaro_system_fgrm222_roller_shutter_controller_2_level
+        - cover.fibaro_system_fgrm222_roller_shutter_controller_2_level_2
+        - input_boolean.alexa_notification
+        - input_boolean.alexa_tourettes
+        - input_boolean.cinema_tv
+        - input_boolean.cinema_humax
+        - input_boolean.cinema_bluray
+        - input_boolean.cinema_prime
+        - input_boolean.cinema_ps4
+        - input_boolean.big_humax
+        - input_boolean.big_bluray
+        - input_boolean.big_prime
+        - input_boolean.big_ps4
+    entity_config:
+      light.office_main:
+        name: Office Light
+        description: The Office main light
+      light.kitchen_edge:
+        name: Kitchen Edge Light
+        description: The Kitchen Edge lights
+      light.kitchen_middle:
+        name: Kitchen Middle Light
+        description: The Kitchen Middle lights
+      light.back_porch:
+        name: Back Porch Light
+        description: The back porch movement detection light
+      light.laundry_main:
+        name: Laundry Light
+        description: The Laundry lights
+      light.utility_main:
+        name: Utility Light
+        description: The Utility lights
+      light.lounge_main:
+        name: Lounge Light
+        description: The Lounge main lights
+      light.lounge_wall:
+        name: Lounge Wall
+        description: The Lounge wall lights
+      light.cinema_porch:
+        name: Cinema Porch Light
+        description: The Cinema porch lights
+      light.cinema_front:
+        name: Cinema Front Light
+        description: The lights at the back of the Cinema
+      light.cinema_back:
+        name: Cinema Back Light
+        description: The lights at the front of the Cinema
+      light.front_porch:
+        name: Front Porch Light
+        description: The front porch movement detection light
+      light.hallway_main: 
+        name: Hallway Light
+        description: The Hallway main lights
+      light.landing_main:
+        name: Landing Light
+        description: The Landing main lights
+      light.master_bedroom_main:
+        name: Master Bedroom Light
+        description: The Master Bedroom main lights
+      light.guest_bedroom_main:
+        name: Guest Bedroom Light
+        description: The Guest Bedroom main light
+      light.ensuite_main:
+        name: Ensuite Light
+        description: The Ensuite lights and extractor fan
+      light.bedroom_2_main:
+        name: Bedroom 2 Light
+        description: The Bedroom 2 main light
+      light.bedroom_3_main:
+        name: Bedroom 3 Light
+        description: The Bedroom 3 main light
+      light.loft_main:
+        name: Loft Light
+        description: The Loft main lights
+      switch.sideboard_light:
+        name: Sideboard Light
+        description: The Sideboard light in the Lounge
+      switch.mb_bedside_light:
+        name: Master Bedroom Bedside Light
+        description: The bedside light in the Master Bedroom
+      switch.gb_bedside_light:
+        name: Guest Bedroom Bedside Light 
+        description: The bedside light in the Guest Bedroom
+      switch.christmas_tree_lights:
+        name: Christmas Tree Lights 
+        description: The Christmas tree lights in the Lounge
+      cover.office_blind:
+        name: Office Blind
+        description: The Office window blind
+      cover.cinema_blind:
+        name: Cinema Blind
+        description: The Cinema main blind
+      cover.cinema_door_blind:
+        name: Cinema Door Blind
+        description: The Cinema door blind
+      cover.gym_blind:
+        name: Gym Blind
+        description: The Gym window blind
+      cover.landing_blind:
+        name: Landing Blind
+        description: The Hallway and Landing window blinds
+      cover.lounge_blind:
+        name: Lounge Blind
+        description: The Lounge window blinds
+      cover.guest_bedroom_blind:
+        name: Guest Bedroom Blind
+        description: The Guest Bedroom window blind
+      cover.master_bedroom_blind:
+        name: Master Bedroom Blind
+        description: The Master Bedroom window blind
+      cover.utility_blind:
+        name: Utility Blind
+        description: The Utility window blind
+      cover.fibaro_system_fgrm222_roller_shutter_controller_2_level:
+        name: Cinema Vent
+        description: Roof Vent in the Cinema
+      cover.fibaro_system_fgrm222_roller_shutter_controller_2_level_2:
+        name: Gym Vent
+        description: Roof Vent in the Gym
+      input_boolean.alexa_notification:
+        name: Jeeves Notification
+        description: Announce any device state changes
+      input_boolean.alexa_tourettes:
+        name: Jeeves Tourettes
+        description: Give alexa Tourettes for state changes
+      input_boolean.cinema_tv:
+        name: Cinema TV
+        description: Watch TV in the Cinema
+      input_boolean.cinema_humax:
+        name: Cinema Humax
+        description: Watch TV via the Humax in the Cinema
+      input_boolean.cinema_bluray:
+        name: Cinema BluRay
+        description: Watch BluRay films on the TV in the Cinema
+      input_boolean.cinema_prime:
+        name: Cinema Prime
+        description: Watch Amazon Prime on the TV in the Cinema
+      input_boolean.cinema_ps4:
+        name: Cinema Playstation
+        description: Play Playstation 4 on the TV in the Cinema
+      input_boolean.big_humax:
+        name: Big Humax
+        description: Watch Humax on the big screen in the Cinema
+      input_boolean.big_bluray:
+        name: Big BluRay
+        description: Watch BluRay films on the big screen in the Cinema
+      input_boolean.big_prime:
+        name: Big Prime
+        description: Watch Amazon Prime on the big screen in the Cinema
+      input_boolean.big_ps4:
+        name: Big Playstation
+        description: Play Playstation on the big screen in the Cinema
+
+# Enables the frontend
+frontend:
+  javascript_version: latest
+
+# Enables configuration UI
+config:
+
+panel_iframe:
+  configurator:
+    title: Configurator
+    icon: mdi:wrench
+    url: !secret configurator
+  logviewer:
+    title: Log Viewer
+    icon: mdi:script
+    url: !secret logviewer
+#  mqtt:
+#    title: MQTT
+#    icon: mdi:code-brackets
+#    url: !secret mqtt_ip
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  api_password: !secret http_password
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  # base_url: example.duckdns.org:8123
+  base_url: !secret do_base_url
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+  trusted_networks:
+    - 127.0.0.1
+    - ::1
+    - 192.168.86.0/24
+    - fd00::/8
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+# discovery:
+
+# Hassio - used to enable the hass.io menu item for adding components
+hassio:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# declare a shopping list
+shopping_list:
+
+# tracking location
+device_tracker:
+  - platform: bluetooth_tracker
+#  - platform: googlehome
+#    host: 192.168.86.1
+  - platform: nmap_tracker
+#    hosts: 192.168.86.0/24
+    hosts: 192.168.86.220-221
+    exclude:
+      - 192.168.86.1-219
+      - 192.168.86.222-250
+  - platform: ping
+    hosts:
+      iphone_robin_ping: 192.168.86.220
+      iphone_julie_ping: 192.168.86.221
+#  - platform: icloud
+#    username: !secret amazon_email
+#    password: !secret apple_cloud_pw
+#    account_name: robin.a.gordon
+#    filter_devices: 'phone'
+#  - platform: owntracks
+#    max_gps_accuracy: 200
+#    mqtt_topic: "owntracks/#"
+  - platform: composite
+    name: robin
+    entity_id:
+      - device_tracker.iphone_robin_ping
+      - device_tracker.robinsiphonelan
+#      - device_tracker.robins_iphone
+#      - device_tracker.robinsiphone
+  - platform: composite
+    name: julie
+    entity_id:
+      - device_tracker.iphone_julie_ping
+      - device_tracker.juliesiphonelan
+
+# Enable zwave
+zwave:
+  usb_path: /dev/ttyACM0
+  network_key: !secret zwave_key
+
+# rfxtrx 433 protocol
+rfxtrx:
+  device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1YVKF2V-if00-port0
+  debug: True
+  dummy: False
+
+# weather information platform
+weather:
+  - platform: darksky
+    api_key: !secret darksky_api
+
+# define lights
+light:
+  platform: rfxtrx
+  automatic_add: false
+  signal_repetitions: 2
+  devices:
+    0a14000000410100010070: #LightwaveRF
+      name: office_main
+    0a14000000410200010070: #LightwaveRF
+      name: kitchen_edge
+    0a14000000410300010070: #LightwaveRF
+      name: kitchen_middle
+    0a14000000410400010070: #LightwaveRF
+      name: back_porch
+    0a14000000410500010070: #LightwaveRF
+      name: laundry_main
+    0a14000000410600010070: #LightwaveRF
+      name: utility_main
+    0a14000000410700010070: #LightwaveRF
+      name: lounge_main
+    0a14000000410800010070: #LightwaveRF
+      name: lounge_wall
+    0a14000000410900010070: #LightwaveRF
+      name: cinema_porch
+    0a14000000420100010070: #LightwaveRF
+      name: cinema_front
+    0a14000000420200010070: #LightwaveRF
+      name: cinema_back
+    0a14000000420400010070: #LightwaveRF
+      name: front_porch
+    0a14000000420500010070: #LightwaveRF
+      name: hallway_main
+    0a14000000420600010070: #LightwaveRF
+      name: landing_main
+    0a14000000420700010070: #LightwaveRF
+      name: master_bedroom_main
+    0a14000000420800010070: #LightwaveRF
+      name: guest_bedroom_main
+    0a14000000420900010070: #LightwaveRF
+      name: ensuite_main
+    0a14000000430100010070: #LightwaveRF
+      name: bedroom_2_main
+    0a14000000430200010070: #LightwaveRF
+      name: bedroom_3_main
+    0a14000000430300010070: #LightwaveRF
+      name: loft_main
+
+# define switches
+switch:
+  - platform: rfxtrx
+    automatic_add: true
+    signal_repetitions: 2
+    devices:
+      "0710080041010000": #Energenie
+        name: router
+      "0710080041020000": #Energenie
+        name: sideboard_light
+      "0710080041030000": #Energenie
+        name: mb_bedside_light
+      "0710080041040000": #Energenie
+        name: gb_bedside_light
+      "0710080041050000": #Energenie
+        name: christmas_tree_lights
+
+
+# define blinds
+cover:
+  - platform: rfxtrx
+    automatic_add: false
+    signal_repetitions: 1
+    devices:
+      071a000000003301: #RFY
+        name: office_blind
+      071a000000002701: #RFY
+        name: cinema_blind
+      071a000000002601: #RFY
+        name: cinema_door_blind
+      071a000000002501: #RFY
+        name: gym_blind
+      071a000000003600: #RFY
+        name: landing_blind
+      071a000000003a00: #RFY
+        name: lounge_blind
+      071a000000003e00: #RFY
+        name: guest_bedroom_blind
+      071a000000003c00: #RFY
+        name: master_bedroom_blind
+      071a000000003400: #RFY
+        name: utility_blind
+#      071a000000003800: #RFY
+#        name: hallway_blind (doesn't exist independently of landing_blind)
+
+# image processing stuff
+ffmpeg:
+  ffmpeg_bin: /usr/bin/ffmpeg
+
+# Security Camera definitions
+camera:
+  - platform: foscam
+    ip: !secret Office_cam_ip
+    port: !secret Office_cam_port
+    username: !secret Office_cam_login
+    password: !secret Office_cam_passwd
+    name: Office
+  - platform: foscam
+    ip: !secret Garage_cam_ip
+    port: !secret Garage_cam_port
+    username: !secret Garage_cam_login
+    password: !secret Garage_cam_passwd
+    name: Garage
+  - platform: foscam
+    ip: !secret Garden_cam_ip
+    port: !secret Garden_cam_port
+    username: !secret Garden_cam_login
+    password: !secret Garden_cam_passwd
+    name: Garden
+  - platform: foscam
+    ip: !secret Kiln_cam_ip
+    port: !secret Kiln_cam_port
+    username: !secret Kiln_cam_login
+    password: !secret Kiln_cam_passwd
+    name: Kiln
+#  - platform: yi
+#    name: Cinema_Cam
+#    host: '192.168.86.245'
+#    password: ''
+#    path: /tmp/sd/record
+#    ffmpeg_bin: /usr/bin/ffmpeg
+#    ffmpeg_arguments: '-vf scale=800:450'
+#  - platform: generic
+#    name: Robin
+#    still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.robin.attributes.latitude }},{{ states.device_tracker.robin.attributes.longitude }}&zoom=13&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:P%7C{{ states.device_tracker.robin.attributes.latitude }},{{ states.device_tracker.robin.attributes.longitude }}&key=YOUR_API_KEY
+#    limit_refetch_to_url_change: true
+
+input_boolean:
+  alexa_notification: # voice notification
+    name: Alexa Notification
+    initial: off
+    icon: mdi:message-text-outline
+  alexa_tourettes:
+    name: Alexa Tourette's
+    initial: off
+    icon: mdi:comment-remove-outline
+  alexa_office: # alexa notification nodes
+    name: Office DOT
+    initial: off
+    icon: mdi:hockey-puck
+  alexa_kitchen:
+    name: Kitchen Echo
+    initial: off
+    icon: mdi:hockey-puck
+  alexa_lounge:
+    name: Lounge DOT
+    initial: off
+    icon: mdi:hockey-puck
+  alexa_cinema:
+    name: Cinema DOT
+    initial: off
+    icon: mdi:hockey-puck
+  alexa_master_bedroom:
+    name: Master Bedroom DOT
+    initial: off
+    icon: mdi:hockey-puck
+  molly_monday: # molly schedule control
+    name: Monday
+    initial: on
+    icon: mdi:calendar-check
+  molly_tuesday:
+    name: Tuesday
+    initial: off
+    icon: mdi:calendar-check
+  molly_wednesday:
+    name: Wednesday
+    initial: on
+    icon: mdi:calendar-check
+  molly_thursday:
+    name: Thursday
+    initial: off
+    icon: mdi:calendar-check
+  molly_friday:
+    name: Friday
+    initial: on
+    icon: mdi:calendar-check
+  molly_saturday:
+    name: Saturday
+    initial: off
+    icon: mdi:calendar-check
+  molly_sunday:
+    name: Sunday
+    initial: off
+    icon: mdi:calendar-check
+  molly_noone_home:
+    name: Unoccupied vacuum only
+    initial: off
+    icon: mdi:calendar-check
+  front_porch_on_key: # Which lights on are key?
+    name: Porch Light
+    initial: on
+    icon: mdi:shield-key-outline
+  back_porch_on_key:
+    name: Back Porch Light
+    initial: on
+    icon: mdi:shield-key-outline
+  cinema_porch_on_key:
+    name: Cinema Porch Light
+    initial: off
+    icon: mdi:shield-key-outline
+  master_bedroom_main_on_key:
+    name: Master Bedroom Main Lights
+    initial: off
+    icon: mdi:shield-key-outline
+  ensuite_main_on_key:
+    name: Ensuite Main Lights
+    initial: off
+    icon: mdi:shield-key-outline
+  bedroom_2_main_on_key:
+    name: Bedroom 2 Main Light
+    initial: off
+    icon: mdi:shield-key-outline
+  bedroom_3_main_on_key:
+    name: Bedroom 3 Main Light
+    initial: off
+    icon: mdi:shield-key-outline
+  guest_bedroom_main_on_key:
+    name: Guest Bedroom Main Light
+    initial: off
+    icon: mdi:shield-key-outline
+  landing_main_on_key:
+    name: Landing Main Lights
+    initial: off
+    icon: mdi:shield-key-outline
+  loft_main_on_key:
+    name: Loft Main Lights
+    initial: off
+    icon: mdi:shield-key-outline
+  office_main_on_key:
+    name: Office Main Light
+    initial: off
+    icon: mdi:shield-key-outline
+  hallway_main_on_key:
+    name: Hallway Main Lights
+    initial: off
+    icon: mdi:shield-key-outline
+  kitchen_edge_on_key:
+    name: Kitchen Edge Lights
+    initial: off
+    icon: mdi:shield-key-outline
+  kitchen_middle_on_key:
+    name: Kitchen Middle Lights
+    initial: off
+    icon: mdi:shield-key-outline
+  utility_main_on_key:
+    name: Utility Main Lights
+    initial: off
+    icon: mdi:shield-key-outline
+  laundry_main_on_key:
+    name: Laundry Main Lights
+    initial: off
+    icon: mdi:shield-key-outline
+  lounge_main_on_key:
+    name: Lounge Main Lights
+    initial: off
+    icon: mdi:shield-key-outline
+  lounge_wall_on_key:
+    name: Lounge Wall Lights
+    initial: on
+    icon: mdi:shield-key-outline
+  cinema_front_on_key:
+    name: Cinema Front Lights
+    initial: off
+    icon: mdi:shield-key-outline
+  cinema_back_on_key:
+    name: Cinema Back Lights
+    initial: on
+    icon: mdi:shield-key-outline
+  gym_main_on_key:
+    name: Gym Main Lights
+    initial: off
+    icon: mdi:shield-key-outline
+  lounge_sideboard_on_key:
+    name: Lounge Sideboard Light
+    initial: on
+    icon: mdi:shield-key-outline
+  mb_bedside_on_key:
+    name: Master Bedroom Bedside Light
+    initial: on
+    icon: mdi:shield-key-outline
+  gb_bedside_on_key:
+    name: Guest Bedroom Bedside Light
+    initial: on
+    icon: mdi:shield-key-outline
+  christmas_tree_on_key:
+    name: Christmas Tree Lights
+    initial: on
+    icon: mdi:shield-key-outline
+  front_porch_off_key: # Which lights off are key?
+    name: Porch Light
+    initial: on
+    icon: mdi:shield-key
+  back_porch_off_key:
+    name: Back Porch Light
+    initial: on
+    icon: mdi:shield-key
+  cinema_porch_off_key:
+    name: Cinema Porch Light
+    initial: on
+    icon: mdi:shield-key
+  master_bedroom_main_off_key:
+    name: Master Bedroom Main Lights
+    initial: on
+    icon: mdi:shield-key
+  ensuite_main_off_key:
+    name: Ensuite Main Lights
+    initial: on
+    icon: mdi:shield-key
+  bedroom_2_main_off_key:
+    name: Bedroom 2 Main Light
+    initial: on
+    icon: mdi:shield-key
+  bedroom_3_main_off_key:
+    name: Bedroom 3 Main Light
+    initial: on
+    icon: mdi:shield-key
+  guest_bedroom_main_off_key:
+    name: Guest Bedroom Main Light
+    initial: on
+    icon: mdi:shield-key
+  landing_main_off_key:
+    name: Landing Main Lights
+    initial: on
+    icon: mdi:shield-key
+  loft_main_off_key:
+    name: Loft Main Lights
+    initial: on
+    icon: mdi:shield-key
+  office_main_off_key:
+    name: Office Main Light
+    initial: on
+    icon: mdi:shield-key
+  hallway_main_off_key:
+    name: Hallway Main Lights
+    initial: on
+    icon: mdi:shield-key
+  kitchen_edge_off_key:
+    name: Kitchen Edge Lights
+    initial: on
+    icon: mdi:shield-key
+  kitchen_middle_off_key:
+    name: Kitchen Middle Lights
+    initial: on
+    icon: mdi:shield-key
+  utility_main_off_key:
+    name: Utility Main Lights
+    initial: on
+    icon: mdi:shield-key
+  laundry_main_off_key:
+    name: Laundry Main Lights
+    initial: on
+    icon: mdi:shield-key
+  lounge_main_off_key:
+    name: Lounge Main Lights
+    initial: on
+    icon: mdi:shield-key
+  lounge_wall_off_key:
+    name: Lounge Wall Lights
+    initial: on
+    icon: mdi:shield-key
+  cinema_front_off_key:
+    name: Cinema Front Lights
+    initial: on
+    icon: mdi:shield-key
+  cinema_back_off_key:
+    name: Cinema Back Lights
+    initial: on
+    icon: mdi:shield-key
+  gym_main_off_key:
+    name: Gym Main Lights
+    initial: on
+    icon: mdi:shield-key
+  lounge_sideboard_off_key:
+    name: Lounge Sideboard Light
+    initial: on
+    icon: mdi:shield-key
+  mb_bedside_off_key:
+    name: Master Bedroom Bedside Light
+    initial: off
+    icon: mdi:shield-key
+  gb_bedside_off_key:
+    name: Guest Bedroom Bedside Light
+    initial: off
+    icon: mdi:shield-key
+  christmas_tree_off_key:
+    name: Christmas Tree Lights
+    initial: on
+    icon: mdi:shield-key
+  key_lights_on:
+    name: Lights On Automation
+    initial: on
+    icon: mdi:shield-key-outline
+  key_lights_off:
+    name: Lights Off Automation
+    initial: on
+    icon: mdi:shield-key
+  holiday_on: # Which lights are part of a holiday sequence?
+    name: Holiday Lights Automation
+    initial: off
+    icon: mdi:airplane-takeoff
+#  front_porch_holiday: 
+#    name: Porch Light
+#    initial: off
+#    icon: mdi:shield-key
+#  back_porch_holiday:
+#    name: Back Porch Light
+#    initial: off
+#    icon: mdi:shield-key
+#  cinema_porch_holiday:
+#    name: Cinema Porch Light
+#    initial: on
+#    icon: mdi:shield-key
+#  master_bedroom_main_holiday:
+#    name: Master Bedroom Main Lights
+#    initial: on
+#    icon: mdi:shield-key
+#  ensuite_main_holiday:
+#    name: Ensuite Main Lights
+#    initial: on
+#    icon: mdi:shield-key
+#  bedroom_2_main_holiday:
+#    name: Bedroom 2 Main Light
+#    initial: on
+#    icon: mdi:shield-key
+#  bedroom_3_main_holiday:
+#    name: Bedroom 3 Main Light
+#    initial: on
+#    icon: mdi:shield-key
+#  guest_bedroom_main_holiday:
+#    name: Guest Bedroom Main Light
+#    initial: on
+#    icon: mdi:shield-key
+#  landing_main_holiday:
+#    name: Landing Main Lights
+#    initial: on
+#    icon: mdi:shield-key
+#  loft_main_holiday:
+#    name: Loft Main Lights
+#    initial: on
+#    icon: mdi:shield-key
+#  office_main_holiday:
+#    name: Office Main Light
+#    initial: on
+#    icon: mdi:shield-key
+#  hallway_main_holiday:
+#    name: Hallway Main Lights
+#    initial: on
+#    icon: mdi:shield-key
+#  kitchen_edge_holiday:
+#    name: Kitchen Edge Lights
+#    initial: on
+#    icon: mdi:shield-key
+#  kitchen_middle_holiday:
+#    name: Kitchen Middle Lights
+#    initial: on
+#    icon: mdi:shield-key
+#  utility_main_holiday:
+#    name: Utility Main Lights
+#    initial: on
+#    icon: mdi:shield-key
+#  laundry_main_holiday:
+#    name: Laundry Main Lights
+#    initial: on
+#    icon: mdi:shield-key
+#  lounge_main_holiday:
+#    name: Lounge Main Lights
+#    initial: on
+#    icon: mdi:shield-key
+#  lounge_wall_holiday:
+#    name: Lounge Wall Lights
+#    initial: off
+#    icon: mdi:shield-key
+#  cinema_front_holiday:
+#    name: Cinema Front Lights
+#    initial: on
+#    icon: mdi:shield-key
+#  cinema_back_holiday:
+#    name: Cinema Back Lights
+#    initial: off
+#    icon: mdi:shield-key
+#  gym_main_holiday:
+#    name: Gym Main Lights
+#    initial: on
+#    icon: mdi:shield-key
+#  lounge_sideboard_holiday:
+#    name: Lounge Sideboard Light
+#    initial: off
+#    icon: mdi:shield-key
+#  mb_bedside_holiday:
+#    name: Master Bedroom Bedside Light
+#    initial: off
+#    icon: mdi:shield-key
+#  gb_bedside_holiday:
+#    name: Guest Bedroom Bedside Light
+#    initial: off
+#    icon: mdi:shield-key
+#  christmas_tree_holiday:
+#    name: Christmas Tree Lights
+#    initial: off
+#    icon: mdi:shield-key
+  cinema_tv: # Following switches used to allow turning on of entertainment activities via Alexa
+    initial: off
+  cinema_humax:
+    initial: off
+  cinema_bluray:
+    initial: off
+  cinema_prime:
+    initial: off
+  cinema_ps4:
+    initial: off
+  big_humax:
+    initial: off
+  big_bluray:
+    initial: off
+  big_prime:
+    initial: off
+  big_ps4:
+    initial: off
+
+#  foscam_motion_detect:
+#    name: Motion detect on
+#    initial: off
+#    icon: mdi:radar
+#  foscam_snap_picture_now:
+#    name: Take picture
+#    initial: off
+#    icon: mdi:record-rec
+#  foscam_stop_cruise:
+#    name: Stop cruise 
+#    initial: off
+#    icon: mdi:square
+
+# Automation time variables
+input_number:
+  lights_off_hour:
+    name: Hour
+    icon: mdi:timer
+    min: 0
+    max: 23
+    step: 1
+    initial: 23
+  lights_off_minutes:
+    name: Minutes
+    icon: mdi:timer
+    min: 0
+    max: 59
+    step: 1
+    initial: 45
+  router_reboot_hour:
+    name: Hour
+    icon: mdi:timer
+    min: 0
+    max: 23
+    step: 1
+    initial: 2
+  router_reboot_minutes:
+    name: Minutes
+    icon: mdi:timer
+    min: 0
+    max: 59
+    step: 1
+    initial: 0
+  window_vent_open_hour:
+    name: Hour
+    icon: mdi:timer
+    min: 0
+    max: 23
+    step: 1
+    initial: 9
+  window_vent_open_minutes:
+    name: Minutes
+    icon: mdi:timer
+    min: 0
+    max: 59
+    step: 1
+    initial: 15
+  window_vent_close_hour:
+    name: Hour
+    icon: mdi:timer
+    min: 0
+    max: 23
+    step: 1
+    initial: 10
+  window_vent_close_minutes:
+    name: Minutes
+    icon: mdi:timer
+    min: 0
+    max: 59
+    step: 1
+    initial: 5
+  blinds_up_weekday_hour:
+    name: Hour
+    icon: mdi:timer
+    min: 0
+    max: 23
+    step: 1
+    initial: 7
+  blinds_up_weekday_minutes:
+    name: Minutes
+    icon: mdi:timer
+    min: 0
+    max: 59
+    step: 1
+    initial: 30
+  blinds_up_weekend_hour:
+    name: Hour
+    icon: mdi:timer
+    min: 0
+    max: 23
+    step: 1
+    initial: 8
+  blinds_up_weekend_minutes:
+    name: Minutes
+    icon: mdi:timer
+    min: 0
+    max: 59
+    step: 1
+    initial: 15
+  blinds_down_hour:
+    name: Hour
+    icon: mdi:timer
+    min: 0
+    max: 23
+    step: 1
+    initial: 21
+  blinds_down_minutes:
+    name: Minutes
+    icon: mdi:timer
+    min: 0
+    max: 59
+    step: 1
+    initial: 0
+  key_lights_hour:
+    name: Hour
+    icon: mdi:timer
+    min: 0
+    max: 23
+    step: 1
+    initial: 18
+  key_lights_minutes:
+    name: Minutes
+    icon: mdi:timer
+    min: 0
+    max: 59
+    step: 1
+    initial: 0
+# Molly timing schedule
+  molly_start_hour:
+    name: Hour
+    icon: mdi:timer
+    min: 0
+    max: 23
+    step: 1
+    initial: 11
+  molly_start_minutes:
+    name: Minutes
+    icon: mdi:timer
+    min: 0
+    max: 59
+    step: 1
+    initial: 0
+# Foscam controls
+#  foscam_zoom:
+#    name: Zoom
+#    initial: 0
+#    min: -3
+#    max: 3
+#    step: 1
+#    icon: mdi:binoculars
+#  foscam_up_down:
+#    name: Move vertical
+#    initial: 0
+#    min: -5
+#    max: 5
+#    step: 1
+#    icon: mdi:swap-vertical
+#  foscam_left_right:
+#    name: Move horizontal
+#    initial: 0
+#    min: -5
+#    max: 5
+#    step: 1
+#    icon: mdi:swap-horizontal
+
+# what to announce across the Alexa network
+input_text:
+  alexa_announcement:
+    name: Announcement
+    min: 1
+    max: 255
+    initial: Some Text
+    mode: text
+
+# New version of evohome component
+evohome:
+  username: !secret evohome_username
+  password: !secret evohome_password
+#  scan_interval: 120
+#  high_precision: true
+#  use_heuristics: false
+#  use_schedules: true
+  location_idx: 0
+#  away_temp: 10.0
+#  off_temp: 5.0
+
+visonic:
+  device:
+    type: usb
+    path: '/dev/ttyUSB1'
+  motion_off: 120
+  language: 'EN'
+  debug: 'no'
+  force_standard: 'yes'
+  sync_time: 'yes'
+  allow_remote_arm: 'yes'
+  allow_remote_disarm: 'yes'
+  override_code: !secret alarm_override_code
+  arm_without_usercode: 'yes'
+
+# Robotic vacuum cleaner
+vacuum:
+  - platform: xiaomi_miio
+    host: !secret molly_ip
+    token: !secret molly_token
+    name: Molly
+
+# Harmony remote control
+remote:
+  - platform: harmony
+    name: Cinema
+    username: !secret Harmony_User
+    password: !secret Harmony_Password
+    host: !secret harmony_ip
+    port: !secret harmony_port
+#    activity: Watch TV
+
+input_select:
+  cinema:
+    name: Cinema
+    options:
+      - Powered Off
+      - Watch TV
+      - Watch Humax
+      - Watch BluRay
+      - Watch Amazon Prime
+      - Play Playstation 4
+      - Big Screen Humax
+      - Big Screen BluRay
+      - Big Screen Amazon Prime
+      - Big Screen Playstation 4
+    initial: Powered Off
+    icon: mdi:video-vintage
+#  house_mode:
+#    name: Mode
+#    options:
+#      - Wake-up
+#      - Morning
+#      - Day
+#      - Bedtime
+#      - Night
+#    icon: mdi:home-automation
+
+# LG TV
+media_player:
+  - platform: webostv
+    host: !secret lg_tv_ip
+    name: LGTV
+  - platform: alexa
+    email: !secret amazon_email
+    password: !secret amazon_password
+    url: amazon.co.uk
+
+#media_extractor:
+#  default_query: worst
+#  customize:
+#    media_player.office_dot:
+#      video: bestvideo
+#      music: bestaudio[ext=mp3]
+
+# Get sensor definitions 
+sensor: !include sensors.yaml
+
+# get binary sensor definitions
+binary_sensor: !include binary_sensors.yaml
+
+# View all events in a logbook
+# logbook:
+
+logger:
+#  default: debug
+#  default: critical
+  default: error
+#  logs:
+#    custom_components.media_player.alexa: debug
+#    homeassistant.components.alexa: debug
+#    remote.harmony: debug
+#    custom_components.climate.evohome: debug
+#    custom_components.evohome: debug
+#    custom_components.water_heater.evohome: debug
+#    custom_components.visonic: debug
+#    custom_components.alarm_control_panel.visonic: debug
+#    custom_components.sensor.visonic: debug
+#    custom_components.pyvisonic: debug
+
+# Text to speech
+tts:
+  - platform: google
+
+# Cloud
+# cloud:
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+#mqtt:
+#  broker: !secret mqtt_broker_ip
+#  port: !secret mqtt_port
+#  client_id: !secret mqtt_client_id
+#  username: !secret mqtt_username
+#  password: !secret mqtt_password
+#  discovery: true
+#  discovery_prefix: homeassistant

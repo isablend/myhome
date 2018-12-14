@@ -1,0 +1,32 @@
+  - platform: template
+    sensors:
+      office_movement:
+        device_class: motion
+        value_template: "{{ is_state('sensor.visonic_z07', 'T') }}"
+      kitchen_movement:
+        device_class: motion
+        value_template: "{{ is_state('sensor.visonic_z03', 'T') }}"
+      hallway_movement:
+        device_class: motion
+        value_template: "{{ is_state('sensor.visonic_z02', 'T') }}"
+      lounge_movement:
+        device_class: motion
+        value_template: "{{ is_state('sensor.visonic_z08', 'T') }}"
+      cinema_movement:
+        device_class: motion
+        value_template: "{{ is_state('sensor.visonic_z09', 'T') }}"
+      gym_movement:
+        device_class: motion
+        value_template: "{{ is_state('sensor.visonic_z11', 'T') }}"
+      front_door:
+        device_class: door
+        value_template: "{{ is_state('sensor.visonic_z01', 'T') or is_state('sensor.visonic_z01', 'O') }}"
+      back_door:
+        device_class: door
+        value_template: "{{ is_state('sensor.visonic_z04', 'T') or is_state('sensor.visonic_z04', 'O') }}"
+      cinema_door:
+        device_class: door
+        value_template: "{{ is_state('sensor.visonic_z10', 'T') or is_state('sensor.visonic_z10', 'O') }}"
+      lounge_door:
+        device_class: door
+        value_template: "{{ is_state('sensor.visonic_z12', 'T') or is_state('sensor.visonic_z12', 'O') }}"

@@ -1,0 +1,217 @@
+  - platform: google_wifi
+    monitored_conditions:
+      - uptime
+      - last_restart
+      - local_ip
+      - status
+  - platform: uptime
+    name: Time Online
+    unit_of_measurement: minutes
+  - platform: darksky
+    api_key: !secret darksky_api
+    forecast:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+    monitored_conditions:
+      - icon
+      - summary
+      - nearest_storm_distance
+      - nearest_storm_bearing
+      - humidity
+      - temperature
+      - temperature_high
+      - temperature_low
+      - apparent_temperature
+      - apparent_temperature_high
+      - apparent_temperature_low
+      - wind_speed
+      - wind_bearing
+      - precip_type
+      - precip_probability
+      - precip_accumulation
+      - precip_intensity
+      - precip_intensity_max
+      - uv_index
+      - daily_summary
+      - pressure
+      - visibility
+      - hourly_summary
+      - daily_summary
+    update_interval:
+      minutes: 5
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+      - 'date_time'
+      - 'time_date'
+      - 'time_utc'
+      - 'beat'
+  - platform: synologydsm
+    host: !secret NAS_IP
+    username: !secret NAS_userid
+    password: !secret NAS_password
+    monitored_conditions:
+      - cpu_system_load
+      - cpu_total_load
+      - cpu_1min_load
+      - cpu_5min_load
+      - cpu_15min_load
+      - memory_real_usage
+      - memory_size
+      - memory_cached
+      - memory_available_swap
+      - memory_available_real
+      - memory_total_swap
+      - memory_total_real
+      - network_up
+      - network_down
+      - disk_name
+      - disk_device
+      - disk_smart_status
+      - disk_status
+      - disk_exceed_bad_sector_thr
+      - disk_below_remain_life_thr
+      - disk_temp
+      - volume_status
+      - volume_device_type
+      - volume_size_total
+      - volume_size_used
+      - volume_percentage_used
+      - volume_disk_temp_avg
+      - volume_disk_temp_max
+  - platform: speedtest
+    minutes: 5
+    hour:
+      - 1
+      - 4
+      - 7
+      - 10
+      - 13
+      - 16
+      - 19
+      - 22
+    monitored_conditions:
+      - ping
+      - download
+      - upload
+  - platform: systemmonitor
+    resources:
+      - type: processor_use
+      - type: load_1m
+      - type: load_5m
+      - type: load_15m
+      - type: network_in
+        arg: eth0
+      - type: network_out
+        arg: eth0
+      - type: disk_use_percent
+        arg: /
+      - type: memory_use_percent
+      - type: last_boot
+  - platform: template
+    sensors:
+      pi_load_1m:
+        value_template: '{{ states.sensor.load_1m.state | int }}'
+        unit_of_measurement: '%'
+        friendly_name: CPU Load (1 min)
+      pi_load_5m:
+        value_template: '{{ states.sensor.load_5m.state | int }}'
+        unit_of_measurement: '%'
+        friendly_name: CPU Load (5 min)
+      pi_load_15m:
+        value_template: '{{ states.sensor.load_15m.state | int }}'
+        unit_of_measurement: '%'
+        friendly_name: CPU Load (15 min)
+      sunrise:
+        value_template: '{% if states.sun.sun %}{{ ((as_timestamp(states.sun.sun.attributes.next_rising)) | timestamp_local) [0:16] }}{% endif %}'
+      sunset:
+        value_template: '{% if states.sun.sun %}{{ ((as_timestamp(states.sun.sun.attributes.next_setting)) | timestamp_local) [0:16] }}{% endif %}'
+      hot_water_temp:
+        value_template: '{{ states.water_heater.dhw.attributes["temperature"] | float }}'
+        unit_of_measurement: '°C'
+        friendly_name: "Hot Water Temp"
+      office_temp:
+        value_template: '{{ states.climate.office.attributes["current_temperature"] | float }}'
+        unit_of_measurement: '°C'
+        friendly_name: "Office Temp"
+      lounge_temp:
+        value_template: '{{ states.climate.lounge.attributes["current_temperature"] | float }}'
+        unit_of_measurement: '°C'
+        friendly_name: "Lounge Temp"
+      kitchen_temp:
+        value_template: '{{ states.climate.kitchen.attributes["current_temperature"] | float }}'
+        unit_of_measurement: '°C'
+        friendly_name: "Kitchen Temp"
+      hallway_temp:
+        value_template: '{{ states.climate.hallway.attributes["current_temperature"] | float }}'
+        unit_of_measurement: '°C'
+        friendly_name: "Hallway Temp"
+      laundry_temp:
+        value_template: '{{ states.climate.laundry.attributes["current_temperature"] | float }}'
+        unit_of_measurement: '°C'
+        friendly_name: "Laundry Temp"
+      cinema_temp:
+        value_template: '{{ states.climate.cinema.attributes["current_temperature"] | float }}'
+        unit_of_measurement: '°C'
+        friendly_name: "Cinema Temp"
+      gym_temp:
+        value_template: '{{ states.climate.gym.attributes["current_temperature"] | float }}'
+        unit_of_measurement: '°C'
+        friendly_name: "Gym Temp"
+      landing_temp:
+        value_template: '{{ states.climate.landing.attributes["current_temperature"] | float }}'
+        unit_of_measurement: '°C'
+        friendly_name: "Landing Temp"
+      bedroom_1_temp:
+        value_template: '{{ states.climate.bedroom_1.attributes["current_temperature"] | float }}'
+        unit_of_measurement: '°C'
+        friendly_name: "Master Bedroom Temp"
+      bedroom_2_temp:
+        value_template: '{{ states.climate.bedroom_2.attributes["current_temperature"] | float }}'
+        unit_of_measurement: '°C'
+        friendly_name: "Bedroom 2 Temp"
+      bedroom_3_temp:
+        value_template: '{{ states.climate.bedroom_3.attributes["current_temperature"] | float }}'
+        unit_of_measurement: '°C'
+        friendly_name: "Bedroom 3 Temp"
+      bedroom_4_temp:
+        value_template: '{{ states.climate.bedroom_4.attributes["current_temperature"] | float }}'
+        unit_of_measurement: '°C'
+        friendly_name: "Guest Bedroom Temp"
+      lights_off_time:
+        friendly_name: 'Lights Off Time'
+        value_template: '{{ "%0.02d:%0.02d" | format(states("input_number.lights_off_hour") | int, states("input_number.lights_off_minutes") | int) }}'
+      router_reboot_time:
+        friendly_name: 'Router Reboot Time'
+        value_template: '{{ "%0.02d:%0.02d" | format(states("input_number.router_reboot_hour") | int, states("input_number.router_reboot_minutes") | int) }}'
+      window_vent_open_time:
+        friendly_name: 'Window Vent Open-Time'
+        value_template: '{{ "%0.02d:%0.02d" | format(states("input_number.window_vent_open_hour") | int, states("input_number.window_vent_open_minutes") | int) }}'
+      window_vent_close_time:
+        friendly_name: 'Window Vent Close-Time'
+        value_template: '{{ "%0.02d:%0.02d" | format(states("input_number.window_vent_close_hour") | int, states("input_number.window_vent_close_minutes") | int) }}'
+      blinds_up_weekday_time:
+        friendly_name: 'Weekday Blinds Up-Time'
+        value_template: '{{ "%0.02d:%0.02d" | format(states("input_number.blinds_up_weekday_hour") | int, states("input_number.blinds_up_weekday_minutes") | int) }}'
+      blinds_up_weekend_time:
+        friendly_name: 'Weekend Blinds Up-Time'
+        value_template: '{{ "%0.02d:%0.02d" | format(states("input_number.blinds_up_weekend_hour") | int, states("input_number.blinds_up_weekend_minutes") | int) }}'
+      blinds_down_time:
+        friendly_name: 'Blinds Down Time'
+        value_template: '{{ "%0.02d:%0.02d" | format(states("input_number.blinds_down_hour") | int, states("input_number.blinds_down_minutes") | int) }}'
+      key_lights_on_time:
+        friendly_name: 'Key-Lights On-Time'
+        value_template: '{{ "%0.02d:%0.02d" | format(states("input_number.key_lights_hour") | int, states("input_number.key_lights_minutes") | int) }}'
+      molly_start_time:
+        friendly_name: 'Sheduled Clean Time'
+        value_template: '{{ "%0.02d:%0.02d" | format(states("input_number.molly_start_hour") | int, states("input_number.Molly_start_minutes") | int) }}'
+#      refuse_next_collection_date:
+#        friendly_name: 'Next Scheduled Collection'
+#        value_template: '{{ (as_timestamp(states.calendar.droffasoakgmailcom.attributes.start_time) | timestamp_local) [0:10]}}'
+#      refuse_next_collection_type:
+#        friendly_name: 'Next Collection Type'
+#        value_template: {{ state_attr('calendar.droffasoakgmailcom', 'message') }}

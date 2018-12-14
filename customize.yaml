@@ -1,0 +1,145 @@
+  light.office_main:
+    assumed_state: false
+  light.kitchen_edge:
+    assumed_state: false
+    icon: mdi:circle-medium
+  light.kitchen_middle:
+    assumed_state: false
+    icon: mdi:circle-medium
+  light.back_porch:
+    assumed_state: false
+  light.laundry_main:
+    assumed_state: false
+    icon: mdi:circle-medium
+  light.utility_main:
+    assumed_state: false
+    icon: mdi:circle-medium
+  light.lounge_main:
+    assumed_state: false
+  light.lounge_wall:
+    assumed_state: false
+  light.cinema_porch:
+    assumed_state: false
+  light.cinema_front:
+    assumed_state: false
+    icon: mdi:circle-medium
+  light.cinema_back:
+    assumed_state: false
+    icon: mdi:circle-medium
+  light.front_porch:
+    assumed_state: false
+  light.hallway_main:
+    assumed_state: false
+  light.landing_main:
+    assumed_state: false
+  light.master_bedroom_main:
+    assumed_state: false
+  light.guest_bedroom_main:
+    assumed_state: false
+  light.ensuite_main:
+    assumed_state: false
+    icon: mdi:circle-medium
+  light.bedroom_2_main:
+    assumed_state: false
+  light.bedroom_3_main:
+    assumed_state: false
+  light.loft_main:
+    assumed_state: false
+  light.fibaro_system_fgd212_dimmer_2_level_2:
+    icon: mdi:circle-medium
+    friendly_name: gym_main
+  cover.office_blind:
+    assumed_state: false
+    icon: mdi:blinds
+  cover.cinema_blind:
+    assumed_state: false
+    icon: mdi:blinds
+  cover.cinema_door_blind:
+    assumed_state: false
+    icon: mdi:blinds
+  cover.gym_blind:
+    assumed_state: false
+    icon: mdi:blinds
+  cover.landing_blind:
+    assumed_state: false
+    icon: mdi:blinds
+  cover.lounge_blind:
+    assumed_state: false
+    icon: mdi:blinds
+  cover.guest_bedroom_blind:
+    assumed_state: false
+    icon: mdi:blinds
+  cover.master_bedroom_blind:
+    assumed_state: false
+    icon: mdi:blinds
+  cover.utility_blind:
+    assumed_state: false
+    icon: mdi:blinds
+  switch.router:
+    assumed_state: false
+    icon: mdi:router-wireless
+  switch.sideboard_light:
+    assumed_state: false
+    icon: mdi:lamp
+  switch.mb_bedside_light:
+    assumed_state: false
+    icon: mdi:lamp
+  switch.gb_bedside_light:
+    assumed_state: false
+    icon: mdi:lamp
+  switch.christmas_tree_lights:
+    assumed_state: false
+    icon: mdi:tree
+  input_boolean.alexa_notification:
+    assumed_state: false
+    icon: mdi:message-text-outline
+  automation.key_lights_on_at_sunset_or_settime:
+    assumed_state: false
+    icon: mdi:verified
+  automation.turn_off_lights:
+    assumed_state: false
+    icon: mdi:verified
+  automation.blinds_up_at_sunrise_if_after_settime_during_the_week:
+    assumed_state: false
+    icon: mdi:verified
+#    icon: mdi:shield-check-outline
+    friendly_name: Blinds up at sunrise of after set-time
+  automation.blinds_up_at_settime_if_sun_has_already_risen_during_the_week:
+    assumed_state: false
+    icon: mdi:verified
+#    icon: mdi:shield-check-outline
+    friendly_name: Blinds up at set-time if sun already risen
+  automation.blinds_up_at_sunrise_if_after_settime_at_the_weekend:
+    assumed_state: false
+    icon: mdi:verified
+#    icon: mdi:shield-check-outline
+    friendly_name: Blinds up at sunrise if after set-time
+  automation.blinds_up_at_settime_if_sun_has_already_risen_at_the_weekend:
+    assumed_state: false
+    icon: mdi:verified
+#    icon: mdi:shield-check-outline
+    friendly_name: Blinds up at set-time if sun already risen
+  automation.blinds_down_at_sunset_or_settime:
+    assumed_state: false
+    icon: mdi:verified
+#    icon: mdi:shield-check
+    friendly_name: Blinds down at sunset or set-time
+  automation.router_reboot:
+    assumed_state: false
+    icon: mdi:verified
+  automation.window_vent_open:
+    assumed_state: false
+    icon: mdi:verified
+#    icon: mdi:shield-check-outline
+  automation.molly_scheduled_clean:
+    assumed_state: false
+    icon: mdi:verified
+  input_boolean.molly_noone_home:
+    assumed_state: false
+    icon: mdi:verified
+  cover.fibaro_system_fgrm222_roller_shutter_controller_2_level:
+    friendly_name: Cinema Vent
+    device_class: window
+  cover.fibaro_system_fgrm222_roller_shutter_controller_2_level_2:
+    friendly_name: Gym Vent
+    device_class: window

@@ -1,0 +1,1155 @@
+# Scripts for doing stuff
+lgtv:
+  sequence:
+  - service: remote.turn_on
+    entity_id: remote.cinema
+    data:
+      activity: "35403884"
+humax:
+  sequence:
+  - service: remote.turn_on
+    entity_id: remote.cinema
+    data:
+      activity: "35403916"
+bluray:
+  sequence:
+  - service: remote.turn_on
+    entity_id: remote.cinema
+    data:
+      activity: "35403931"
+tvoff:
+  sequence:
+  - service: remote.turn_off
+    entity_id: remote.cinema
+tv_turned_on:
+  sequence:
+    - service: media_player.alexa_tts
+      data_template:
+        entity_id: media_player.office_dot
+        message: "The TV has been turned on"
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.cinema_tv
+tv_turned_off:
+  sequence:
+    - service: media_player.alexa_tts
+      data_template:
+        entity_id: media_player.office_dot
+        message: "The TV has been turned off"
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.cinema_tv
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.cinema_humax
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.cinema_bluray
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.cinema_prime
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.cinema_ps4
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.big_humax
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.big_bluray
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.big_prime
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.big_ps4
+humax_turned_on:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.office_dot
+      message: "The Humax has been turned on"
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.cinema_humax
+bluray_turned_on:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.office_dot
+      message: "The BluRay has been turned on"
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.cinema_bluray
+prime_turned_on:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.office_dot
+      message: "Amazon Prime has been turned on"
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.cinema_prime
+ps4_turned_on:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.office_dot
+      message: "The PS4 has been turned on"
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.cinema_ps4
+bighumax_turned_on:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.office_dot
+      message: "Humax on the big screen has been turned on"
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.big_humax
+bigbluray_turned_on:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.office_dot
+      message: "BluRay on the big screen has been turned on"
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.big_bluray
+bigprime_turned_on:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.office_dot
+      message: "Amazon Prime on the big screen has been turned on"
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.big_prime
+bigps4_turned_on:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.office_dot
+      message: "Playstation 4 on the big screen has been turned on"
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.big_ps4
+entertainment_fuckup:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.office_dot
+      message: "An activity has been selected without switching the previous activty off, Bolloking Motherfukker, turning everything off first!"
+alexa_tourettes_on:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.office_dot
+      message: "Clunnge, Waank, Aszhole, Bolloks, Motherfukker, Pissflaps, Fany Batter, Nobb Jockey, - thats my Tourettes working you cunnt"
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.kitchen_echo
+      message: "Clunnge, Waank, Aszhole, Bolloks, Motherfukker, Pissflaps, Fany Batter, Nobb Jockey, - thats my Tourettes working you cunnt"
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.cinema_dot
+      message: "Clunnge, Waank, Aszhole, Bolloks, Motherfukker, Pissflaps, Fany Batter, Nobb Jockey, - thats my Tourettes working you cunnt"
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.lounge_dot
+      message: "Clunnge, Waank, Aszhole, Bolloks, Motherfukker, Pissflaps, Fany Batter, Nobb Jockey, - thats my Tourettes working you cunnt"
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.master_bedroom_dot
+      message: "Clunnge, Waank, Aszhole, Bolloks, Motherfukker, Pissflaps, Fany Batter, Nobb Jockey, - thats my Tourettes working you cunnt"
+alexa_tourettes_off:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.office_dot
+      message: "Pissflaps, Motherfukker - Tourettes is now Bolloking turned off"
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.kitchen_echo
+      message: "Pissflaps, Motherfukker - Tourettes is now Bolloking turned off"
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.cinema_dot
+      message: "Pissflaps, Motherfukker - Tourettes is now Bolloking turned off"
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.lounge_dot
+      message: "Pissflaps, Motherfukker - Tourettes is now Bolloking turned off"
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.master_bedroom_dot
+      message: "Pissflaps, Motherfukker - Tourettes is now Bolloking turned off"
+alexa_office_main:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.office_dot
+      message: ->
+        {%- macro touretts() -%}
+         {% set swear = [
+          "Cunnt ",
+          "Waank ",
+          "Aszhole ",
+          "Piss",
+          "Bollok ",
+          "Balls ",
+          "Titts ",
+          "Clunnge ",
+          "Jizzz ",
+          "Motherfukker ",
+          "Fukk Trumpet ",
+          "Arz Badger ",
+          "Gobshite ",
+          "Arzwipe ",
+          "Peckerhead ",
+          "Smeghead ",
+          "Bollok Face ",
+          "Fukk ",
+          "Shiitt ",
+          "Pissflaps",
+          "Waanking ",
+          "Fany Batter",
+          "Bolloking ",
+          "knobhead"
+          ] %}
+         {{ swear|random }}
+        {%- endmacro -%}
+        {% if is_state("input_boolean.alexa_tourettes", "on") -%}
+          {{ touretts() }}The office main {{ touretts() }} light is {{states.light.office_main.state }} {{ touretts() }}
+        {%- else -%}
+          The office light is {{states.light.office_main.state }}
+        {%- endif %}
+alexa_kitchen_light:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.kitchen_echo
+      message: :>
+        {%- macro touretts() -%}
+         {% set swear = [
+          "Cunnt ",
+          "Waank ",
+          "Aszhole ",
+          "Piss",
+          "Bollok ",
+          "Balls ",
+          "Titts ",
+          "Clunnge ",
+          "Jizzz ",
+          "Motherfukker ",
+          "Fukk Trumpet ",
+          "Arz Badger ",
+          "Gobshite ",
+          "Arzwipe ",
+          "Peckerhead ",
+          "Smeghead ",
+          "Bollok Face ",
+          "Fukk ",
+          "Shiitt ",
+          "Pissflaps",
+          "Waanking ",
+          "Fany Batter",
+          "Bolloking ",
+          "knobhead"
+          ] %}
+         {{ swear|random }}
+        {%- endmacro -%}
+        {% if is_state("input_boolean.alexa_tourettes", "on") -%}
+          {{ touretts() }}The kitchen edge {{ touretts() }} lights are {{states.light.kitchen_edge.state }}, the kitchen {{ touretts() }} middle lights are {{states.light.kitchen_middle.state }} {{ touretts() }}
+        {%- else -%}
+          The kitchen edge lights are {{states.light.kitchen_edge.state }}, the kitchen middle lights are {{states.light.kitchen_middle.state }} "
+        {%- endif %}
+alexa_utility_light:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.kitchen_echo
+      message: ->
+        {%- macro touretts() -%}
+         {% set swear = [
+          "Cunnt ",
+          "Waank ",
+          "Aszhole ",
+          "Piss",
+          "Bollok ",
+          "Balls ",
+          "Titts ",
+          "Clunnge ",
+          "Jizzz ",
+          "Motherfukker ",
+          "Fukk Trumpet ",
+          "Arz Badger ",
+          "Gobshite ",
+          "Arzwipe ",
+          "Peckerhead ",
+          "Smeghead ",
+          "Bollok Face ",
+          "Fukk ",
+          "Shiitt ",
+          "Pissflaps",
+          "Waanking ",
+          "Fany Batter",
+          "Bolloking ",
+          "knobhead"
+          ] %}
+         {{ swear|random }}
+        {%- endmacro -%}
+        {% if is_state("input_boolean.alexa_tourettes", "on") -%}
+          {{ touretts() }}The utility {{ touretts() }}lights are {{states.light.utility_main.state }} {{ touretts() }}
+        {%- else -%}
+          The utility lights are {{states.light.utility_main.state }}
+        {%- endif %}
+alexa_laundry_light:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.kitchen_echo
+      message: ->
+        {%- macro touretts() -%}
+         {% set swear = [
+          "Cunnt ",
+          "Waank ",
+          "Aszhole ",
+          "Piss",
+          "Bollok ",
+          "Balls ",
+          "Titts ",
+          "Clunnge ",
+          "Jizzz ",
+          "Motherfukker ",
+          "Fukk Trumpet ",
+          "Arz Badger ",
+          "Gobshite ",
+          "Arzwipe ",
+          "Peckerhead ",
+          "Smeghead ",
+          "Bollok Face ",
+          "Fukk ",
+          "Shiitt ",
+          "Pissflaps",
+          "Waanking ",
+          "Fany Batter",
+          "Bolloking ",
+          "knobhead"
+          ] %}
+         {{ swear|random }}
+        {%- endmacro -%}
+        {% if is_state("input_boolean.alexa_tourettes", "on") -%}
+          {{ touretts() }}The laundry {{ touretts() }}lights are {{states.light.laundry_main.state }} {{ touretts() }}
+        {%- else -%}
+          The laundry lights are {{states.light.laundry_main.state }}
+        {%- endif %}
+alexa_back_porch_light:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.kitchen_echo
+      message: ->
+        {%- macro touretts() -%}
+         {% set swear = [
+          "Cunnt ",
+          "Waank ",
+          "Aszhole ",
+          "Piss",
+          "Bollok ",
+          "Balls ",
+          "Titts ",
+          "Clunnge ",
+          "Jizzz ",
+          "Motherfukker ",
+          "Fukk Trumpet ",
+          "Arz Badger ",
+          "Gobshite ",
+          "Arzwipe ",
+          "Peckerhead ",
+          "Smeghead ",
+          "Bollok Face ",
+          "Fukk ",
+          "Shiitt ",
+          "Pissflaps",
+          "Waanking ",
+          "Fany Batter",
+          "Bolloking ",
+          "knobhead"
+          ] %}
+         {{ swear|random }}
+        {%- endmacro -%}
+        {% if is_state("input_boolean.alexa_tourettes", "on") -%}
+          {{ touretts() }}The back door {{ touretts() }}light is {{states.light.back_porch.state }} {{ touretts() }}
+        {%- else -%}
+          The back door light is {{states.light.back_porch.state }}
+        {%- endif %}
+alexa_hallway_light:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.kitchen_echo
+      message: ->
+        {%- macro touretts() -%}
+         {% set swear = [
+          "Cunnt ",
+          "Waank ",
+          "Aszhole ",
+          "Piss",
+          "Bollok ",
+          "Balls ",
+          "Titts ",
+          "Clunnge ",
+          "Jizzz ",
+          "Motherfukker ",
+          "Fukk Trumpet ",
+          "Arz Badger ",
+          "Gobshite ",
+          "Arzwipe ",
+          "Peckerhead ",
+          "Smeghead ",
+          "Bollok Face ",
+          "Fukk ",
+          "Shiitt ",
+          "Pissflaps",
+          "Waanking ",
+          "Fany Batter",
+          "Bolloking ",
+          "knobhead"
+          ] %}
+         {{ swear|random }}
+        {%- endmacro -%}
+        {% if is_state("input_boolean.alexa_tourettes", "on") -%}
+          {{ touretts() }}The hallway {{ touretts() }}lights are {{states.light.hallway_main.state }} {{ touretts() }}
+        {%- else -%}
+          The hallway lights are {{states.light.hallway_main.state }}
+        {%- endif %}
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.cinema_dot
+      message: ->
+        {%- macro touretts() -%}
+         {% set swear = [
+          "Cunnt ",
+          "Waank ",
+          "Aszhole ",
+          "Piss",
+          "Bollok ",
+          "Balls ",
+          "Titts ",
+          "Clunnge ",
+          "Jizzz ",
+          "Motherfukker ",
+          "Fukk Trumpet ",
+          "Arz Badger ",
+          "Gobshite ",
+          "Arzwipe ",
+          "Peckerhead ",
+          "Smeghead ",
+          "Bollok Face ",
+          "Fukk ",
+          "Shiitt ",
+          "Pissflaps",
+          "Waanking ",
+          "Fany Batter",
+          "Bolloking ",
+          "knobhead"
+          ] %}
+         {{ swear|random }}
+        {%- endmacro -%}
+        {% if is_state("input_boolean.alexa_tourettes", "on") -%}
+          {{ touretts() }}The hallway {{ touretts() }}lights are {{states.light.hallway_main.state }} {{ touretts() }}
+        {%- else -%}
+          The hallway lights are {{states.light.hallway_main.state }}
+        {%- endif %}
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.droffas_oak_lounge_dot
+      message: ->
+        {%- macro touretts() -%}
+         {% set swear = [
+          "Cunnt ",
+          "Waank ",
+          "Aszhole ",
+          "Piss",
+          "Bollok ",
+          "Balls ",
+          "Titts ",
+          "Clunnge ",
+          "Jizzz ",
+          "Motherfukker ",
+          "Fukk Trumpet ",
+          "Arz Badger ",
+          "Gobshite ",
+          "Arzwipe ",
+          "Peckerhead ",
+          "Smeghead ",
+          "Bollok Face ",
+          "Fukk ",
+          "Shiitt ",
+          "Pissflaps",
+          "Waanking ",
+          "Fany Batter",
+          "Bolloking ",
+          "knobhead"
+          ] %}
+         {{ swear|random }}
+        {%- endmacro -%}
+        {% if is_state("input_boolean.alexa_tourettes", "on") -%}
+          {{ touretts() }}The hallway {{ touretts() }}lights are {{states.light.hallway_main.state }} {{ touretts() }}
+        {%- else -%}
+          The hallway lights are {{states.light.hallway_main.state }}
+        {%- endif %}
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.office_dot
+      message: ->
+        {%- macro touretts() -%}
+         {% set swear = [
+          "Cunnt ",
+          "Waank ",
+          "Aszhole ",
+          "Piss",
+          "Bollok ",
+          "Balls ",
+          "Titts ",
+          "Clunnge ",
+          "Jizzz ",
+          "Motherfukker ",
+          "Fukk Trumpet ",
+          "Arz Badger ",
+          "Gobshite ",
+          "Arzwipe ",
+          "Peckerhead ",
+          "Smeghead ",
+          "Bollok Face ",
+          "Fukk ",
+          "Shiitt ",
+          "Pissflaps",
+          "Waanking ",
+          "Fany Batter",
+          "Bolloking ",
+          "knobhead"
+          ] %}
+         {{ swear|random }}
+        {%- endmacro -%}
+        {% if is_state("input_boolean.alexa_tourettes", "on") -%}
+          {{ touretts() }}The hallway {{ touretts() }}lights are {{states.light.hallway_main.state }} {{ touretts() }}
+        {%- else -%}
+          The hallway lights are {{states.light.hallway_main.state }}
+        {%- endif %}
+alexa_front_porch_light:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.office_dot
+      message: ->
+        {%- macro touretts() -%}
+         {% set swear = [
+          "Cunnt ",
+          "Waank ",
+          "Aszhole ",
+          "Piss",
+          "Bollok ",
+          "Balls ",
+          "Titts ",
+          "Clunnge ",
+          "Jizzz ",
+          "Motherfukker ",
+          "Fukk Trumpet ",
+          "Arz Badger ",
+          "Gobshite ",
+          "Arzwipe ",
+          "Peckerhead ",
+          "Smeghead ",
+          "Bollok Face ",
+          "Fukk ",
+          "Shiitt ",
+          "Pissflaps",
+          "Waanking ",
+          "Fany Batter",
+          "Bolloking ",
+          "knobhead"
+          ] %}
+         {{ swear|random }}
+        {%- endmacro -%}
+        {% if is_state("input_boolean.alexa_tourettes", "on") -%}
+          {{ touretts() }}The front porch {{ touretts() }}light is {{states.light.front_porch.state }} {{ touretts() }} 
+        {%- else -%}
+          The front porch light is {{states.light.front_porch.state }} 
+        {%- endif %}
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.kitchen_echo
+      message: ->
+        {%- macro touretts() -%}
+         {% set swear = [
+          "Cunnt ",
+          "Waank ",
+          "Aszhole ",
+          "Piss",
+          "Bollok ",
+          "Balls ",
+          "Titts ",
+          "Clunnge ",
+          "Jizzz ",
+          "Motherfukker ",
+          "Fukk Trumpet ",
+          "Arz Badger ",
+          "Gobshite ",
+          "Arzwipe ",
+          "Peckerhead ",
+          "Smeghead ",
+          "Bollok Face ",
+          "Fukk ",
+          "Shiitt ",
+          "Pissflaps",
+          "Waanking ",
+          "Fany Batter",
+          "Bolloking ",
+          "knobhead"
+          ] %}
+         {{ swear|random }}
+        {%- endmacro -%}
+        {% if is_state("input_boolean.alexa_tourettes", "on") -%}
+          {{ touretts() }}The front porch {{ touretts() }}light is {{states.light.front_porch.state }} {{ touretts() }} 
+        {%- else -%}
+          The front porch light is {{states.light.front_porch.state }} 
+        {%- endif %}
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.cinema_dot
+      message: ->
+        {%- macro touretts() -%}
+         {% set swear = [
+          "Cunnt ",
+          "Waank ",
+          "Aszhole ",
+          "Piss",
+          "Bollok ",
+          "Balls ",
+          "Titts ",
+          "Clunnge ",
+          "Jizzz ",
+          "Motherfukker ",
+          "Fukk Trumpet ",
+          "Arz Badger ",
+          "Gobshite ",
+          "Arzwipe ",
+          "Peckerhead ",
+          "Smeghead ",
+          "Bollok Face ",
+          "Fukk ",
+          "Shiitt ",
+          "Pissflaps",
+          "Waanking ",
+          "Fany Batter",
+          "Bolloking ",
+          "knobhead"
+          ] %}
+         {{ swear|random }}
+        {%- endmacro -%}
+        {% if is_state("input_boolean.alexa_tourettes", "on") -%}
+          {{ touretts() }}The front porch {{ touretts() }}light is {{states.light.front_porch.state }} {{ touretts() }} 
+        {%- else -%}
+          The front porch light is {{states.light.front_porch.state }} 
+        {%- endif %}
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.droffas_oak_lounge_dot
+      message: ->
+        {%- macro touretts() -%}
+         {% set swear = [
+          "Cunnt ",
+          "Waank ",
+          "Aszhole ",
+          "Piss",
+          "Bollok ",
+          "Balls ",
+          "Titts ",
+          "Clunnge ",
+          "Jizzz ",
+          "Motherfukker ",
+          "Fukk Trumpet ",
+          "Arz Badger ",
+          "Gobshite ",
+          "Arzwipe ",
+          "Peckerhead ",
+          "Smeghead ",
+          "Bollok Face ",
+          "Fukk ",
+          "Shiitt ",
+          "Pissflaps",
+          "Waanking ",
+          "Fany Batter",
+          "Bolloking ",
+          "knobhead"
+          ] %}
+         {{ swear|random }}
+        {%- endmacro -%}
+        {% if is_state("input_boolean.alexa_tourettes", "on") -%}
+          {{ touretts() }}The front porch {{ touretts() }}light is {{states.light.front_porch.state }} {{ touretts() }} 
+        {%- else -%}
+          The front porch light is {{states.light.front_porch.state }} 
+        {%- endif %}
+alexa_lounge_light:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.droffas_oak_lounge_dot
+      message: ->
+        {%- macro touretts() -%}
+         {% set swear = [
+          "Cunnt ",
+          "Waank ",
+          "Aszhole ",
+          "Piss",
+          "Bollok ",
+          "Balls ",
+          "Titts ",
+          "Clunnge ",
+          "Jizzz ",
+          "Motherfukker ",
+          "Fukk Trumpet ",
+          "Arz Badger ",
+          "Gobshite ",
+          "Arzwipe ",
+          "Peckerhead ",
+          "Smeghead ",
+          "Bollok Face ",
+          "Fukk ",
+          "Shiitt ",
+          "Pissflaps",
+          "Waanking ",
+          "Fany Batter",
+          "Bolloking ",
+          "knobhead"
+          ] %}
+         {{ swear|random }}
+        {%- endmacro -%}
+        {% if is_state("input_boolean.alexa_tourettes", "on") -%}
+          {{ touretts() }}The lounge main {{ touretts() }}lights are {{states.light.lounge_main.state }}, {{ touretts() }}the lounge wall {{ touretts() }}lights are {{states.light.lounge_wall.state }} {{ touretts() }}
+        {%- else -%}
+          The lounge main lights are {{states.light.lounge_main.state }}, the lounge wall lights are {{states.light.lounge_wall.state }}
+        {%- endif %}
+alexa_cinema_light:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.cinema_dot
+      message: ->
+        {%- macro touretts() -%}
+         {% set swear = [
+          "Cunnt ",
+          "Waank ",
+          "Aszhole ",
+          "Piss",
+          "Bollok ",
+          "Balls ",
+          "Titts ",
+          "Clunnge ",
+          "Jizzz ",
+          "Motherfukker ",
+          "Fukk Trumpet ",
+          "Arz Badger ",
+          "Gobshite ",
+          "Arzwipe ",
+          "Peckerhead ",
+          "Smeghead ",
+          "Bollok Face ",
+          "Fukk ",
+          "Shiitt ",
+          "Pissflaps",
+          "Waanking ",
+          "Fany Batter",
+          "Bolloking ",
+          "knobhead"
+          ] %}
+         {{ swear|random }}
+        {%- endmacro -%}
+        {% if is_state("input_boolean.alexa_tourettes", "on") -%}
+          {{ touretts() }}The cinema back {{ touretts() }}lights are {{states.light.cinema_back.state }}, {{ touretts() }}the cinema front {{ touretts() }}lights are {{states.light.cinema_front.state }} {{ touretts() }}
+        {%- else -%}
+          The cinema back lights are {{states.light.cinema_back.state }}, the cinema front lights are {{states.light.cinema_front.state }}
+        {%- endif %}
+alexa_cinema_porch_light:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.cinema_dot
+      message: ->
+        {%- macro touretts() -%}
+         {% set swear = [
+          "Cunnt ",
+          "Waank ",
+          "Aszhole ",
+          "Piss",
+          "Bollok ",
+          "Balls ",
+          "Titts ",
+          "Clunnge ",
+          "Jizzz ",
+          "Motherfukker ",
+          "Fukk Trumpet ",
+          "Arz Badger ",
+          "Gobshite ",
+          "Arzwipe ",
+          "Peckerhead ",
+          "Smeghead ",
+          "Bollok Face ",
+          "Fukk ",
+          "Shiitt ",
+          "Pissflaps",
+          "Waanking ",
+          "Fany Batter",
+          "Bolloking ",
+          "knobhead"
+          ] %}
+         {{ swear|random }}
+        {%- endmacro -%}
+        {% if is_state("input_boolean.alexa_tourettes", "on") -%}
+          {{ touretts() }}The cinema porch {{ touretts() }}lights are {{states.light.cinema_porch.state }}{{ touretts() }}
+        {%- else -%}
+          The cinema porch lights are {{states.light.cinema_porch_.state }}
+        {%- endif %}
+alexa_gym_light:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.cinema_dot
+      message: ->
+        {%- macro touretts() -%}
+         {% set swear = [
+          "Cunnt ",
+          "Waank ",
+          "Aszhole ",
+          "Piss",
+          "Bollok ",
+          "Balls ",
+          "Titts ",
+          "Clunnge ",
+          "Jizzz ",
+          "Motherfukker ",
+          "Fukk Trumpet ",
+          "Arz Badger ",
+          "Gobshite ",
+          "Arzwipe ",
+          "Peckerhead ",
+          "Smeghead ",
+          "Bollok Face ",
+          "Fukk ",
+          "Shiitt ",
+          "Pissflaps",
+          "Waanking ",
+          "Fany Batter",
+          "Bolloking ",
+          "knobhead"
+          ] %}
+         {{ swear|random }}
+        {%- endmacro -%}
+        {% if is_state("input_boolean.alexa_tourettes", "on") -%}
+          {{ touretts() }}The gym {{ touretts() }}lights are {{states.light.fibaro_system_fgd212_dimmer_2_level_2.state }}{{ touretts() }}
+        {%- else -%}
+          The gym lights are {{states.light.fibaro_system_fgd212_dimmer_2_level_2.state }}
+        {%- endif %}
+alexa_master_bedroom_light:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.master_bedroom_dot
+      message: ->
+        {%- macro touretts() -%}
+         {% set swear = [
+          "Cunnt ",
+          "Waank ",
+          "Aszhole ",
+          "Piss",
+          "Bollok ",
+          "Balls ",
+          "Titts ",
+          "Clunnge ",
+          "Jizzz ",
+          "Motherfukker ",
+          "Fukk Trumpet ",
+          "Arz Badger ",
+          "Gobshite ",
+          "Arzwipe ",
+          "Peckerhead ",
+          "Smeghead ",
+          "Bollok Face ",
+          "Fukk ",
+          "Shiitt ",
+          "Pissflaps",
+          "Waanking ",
+          "Fany Batter",
+          "Bolloking ",
+          "knobhead"
+          ] %}
+         {{ swear|random }}
+        {%- endmacro -%}
+        {% if is_state("input_boolean.alexa_tourettes", "on") -%}
+          {{ touretts() }}The master bedroom {{ touretts() }}lights are {{states.light.master_bedroom_main.state }} {{ touretts() }}
+        {%- else -%}
+          The master bedroom lights are {{states.light.master_bedroom_main.state }}
+        {%- endif %}
+alexa_ensuite_light:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.master_bedroom_dot
+      message: ->
+        {%- macro touretts() -%}
+         {% set swear = [
+          "Cunnt ",
+          "Waank ",
+          "Aszhole ",
+          "Piss ",
+          "Bollok ",
+          "Balls ",
+          "Titts ",
+          "Clunnge ",
+          "Jizzz ",
+          "Motherfukker ",
+          "Fukk Trumpet ",
+          "Arz Badger ",
+          "Gobshite ",
+          "Arzwipe ",
+          "Peckerhead ",
+          "Smeghead ",
+          "Bollok Face ",
+          "Fukk ",
+          "Shiitt ",
+          "Pissflaps",
+          "Waanking ",
+          "Fany Batter",
+          "Bolloking ",
+          "Knobhead"
+          ] %}
+         {{ swear|random }}
+        {%- endmacro -%}
+        {% if is_state("input_boolean.alexa_tourettes", "on") -%}
+          {{ touretts() }}The ensuite {{ touretts() }}lights are {{states.light.ensuite_main.state }} {{ touretts() }}
+        {%- else -%}
+          The ensuite lights are {{states.light.ensuite_main.state }}
+        {%- endif %}
+alexa_bedroom_2_light:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.master_bedroom_dot
+      message: " The bedroom 2 light is {{states.light.bedroom_2_main.state }} "
+alexa_bedroom_3_light:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.master_bedroom_dot
+      message: " The bedroom 3 light is {{states.light.bedroom_3_main.state }} "
+alexa_guest_bedroom_light:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.master_bedroom_dot
+      message: " The guest_bedroom lights are {{states.light.guest_bedroom_main.state }} "
+alexa_landing_light:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.master_bedroom_dot
+      message: ->
+        {%- macro touretts() -%}
+         {% set swear = [
+          "Cunnt ",
+          "Waank ",
+          "Aszhole ",
+          "Piss",
+          "Bollok ",
+          "Balls ",
+          "Titts ",
+          "Clunnge ",
+          "Jizzz ",
+          "Motherfukker ",
+          "Fukk Trumpet ",
+          "Arz Badger ",
+          "Gobshite ",
+          "Arzwipe ",
+          "Peckerhead ",
+          "Smeghead ",
+          "Bollok Face ",
+          "Fukk ",
+          "Shiitt ",
+          "Pissflaps",
+          "Waanking ",
+          "Fany Batter",
+          "Bolloking ",
+          "knobhead"
+          ] %}
+         {{ swear|random }}
+        {%- endmacro -%}
+        {% if is_state("input_boolean.alexa_tourettes", "on") -%}
+          {{ touretts() }}The landing {{ touretts() }}lights are {{states.light.landing_main.state }} {{ touretts() }}
+        {%- else -%}
+          The landing lights are {{states.light.landing_main.state }}
+        {%- endif %}
+alexa_loft_light:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.master_bedroom_dot
+      message: " The loft lights are {{states.light.loft_main.state }} "
+alexa_announcement_office:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.office_dot
+      message: " {{states.input_text.alexa_announcement.state }} "
+alexa_announcement_kitchen:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.kitchen_echo
+      message: " {{states.input_text.alexa_announcement.state }} "
+alexa_announcement_lounge:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.droffas_oak_lounge_dot
+      message: " {{states.input_text.alexa_announcement.state }} "
+alexa_announcement_cinema:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.cinema_dot
+      message: " {{states.input_text.alexa_announcement.state }} "
+alexa_announcement_master_bedroom:
+  sequence:
+  - service: media_player.alexa_tts
+    data_template:
+      entity_id: media_player.master_bedroom_dot
+      message: " {{states.input_text.alexa_announcement.state }} "
+open_vents:
+  sequence:
+# set the vent open position
+  - service: cover.set_cover_position
+    data_template:
+# Gym Vent
+      entity_id: cover.fibaro_system_fgrm222_roller_shutter_controller_2_level_2
+# Open the vent based on the outside temperature
+      position: "{% if states('sensor.outside_temp') | float >= 20 %} 100 {% elif states('sensor.outside_temp') | float >= 10 %} 50 {% else %} 30 {%endif %}"
+# switch off heating if the vent is open
+  - service: climate.turn_off
+    data_template:
+      entity_id: climate.gym
+# set the vent open position
+  - service: cover.set_cover_position
+    data_template:
+# Cinema Vent
+      entity_id: cover.fibaro_system_fgrm222_roller_shutter_controller_2_level
+# Open the vent based on the outside temperature
+      position: "{% if states('sensor.outside_temp') | float >= 20 %} 100 {% elif states('sensor.outside_temp') | float >= 10 %} 50 {% else %} 30 {%endif %}"
+# switch off heating if the vent is open
+  - service: climate.turn_off
+    data_template:
+      entity_id: climate.cinema
+close_vents:
+  sequence:
+# close the vent
+  - service: cover.close_cover
+    data_template:
+# Gym Vent
+      entity_id: cover.fibaro_system_fgrm222_roller_shutter_controller_2_level_2
+# re-set the heating control in the room
+  - service: climate.turn_on
+    data_template:
+      entity_id: climate.gym
+# close the vent
+  - service: cover.close_cover
+    data_template:
+# Cinema Vent
+      entity_id: cover.fibaro_system_fgrm222_roller_shutter_controller_2_level
+# re-set the heating control in the room
+  - service: climate.turn_on
+    data_template:
+      entity_id: climate.cinema
+cinema_on:
+  sequence:
+  - service: media_player.play_media
+    entity_id: media_player.cinema_2
+    data:
+      media_content_id: /local/music/Cinema_on.mp3
+      media_content_type: music
+cinema_off:
+  sequence:
+  - service: media_player.play_media
+    entity_id: media_player.cinema_2
+    data:
+      media_content_id: /local/music/Cinema_off.mp3
+      media_content_type: music
+bedroom_on:
+  sequence:
+  - service: light.turn_on
+    entity_id: light.master_bedroom_main
+  - service: light.turn_on
+    entity_id: light.guest_bedroom_main
+  - service: switch.turn_on
+    entity_id: switch.mb_bedside_light
+  - service: switch.turn_on
+    entity_id: switch.gb_bedside_light
+bedroom_off:
+  sequence:
+  - service: light.turn_off
+    entity_id: light.master_bedroom_main
+  - service: light.turn_off
+    entity_id: light.guest_bedroom_main
+  - service: switch.turn_off
+    entity_id: switch.mb_bedside_light
+  - service: switch.turn_off
+    entity_id: switch.gb_bedside_light
+bathroom_on:
+  sequence:
+  - service: light.turn_on
+    entity_id: light.ensuite_main
+bathroom_off:
+  sequence:
+  - service: light.turn_off
+    entity_id: light.ensuite_main
+landing_on:
+  sequence:
+  - service: light.turn_on
+    entity_id: light.landing_main
+landing_off:
+  sequence:
+  - service: light.turn_off
+    entity_id: light.landing_main
+hallway_on:
+  sequence:
+  - service: light.turn_on
+    entity_id: light.hallway_main
+hallway_off:
+  sequence:
+  - service: light.turn_off
+    entity_id: light.hallway_main
+all_lights_off:
+  sequence:
+  - service: light.turn_off
+    entity_id: light.office_main
+  - service: light.turn_off
+    entity_id: light.kitchen_edge
+  - service: light.turn_off
+    entity_id: light.kitchen_middle
+  - service: light.turn_off
+    entity_id: light.back_porch
+  - service: light.turn_off
+    entity_id: light.laundry_main
+  - service: light.turn_off
+    entity_id: light.utility_main
+  - service: light.turn_off
+    entity_id: light.lounge_main
+  - service: light.turn_off
+    entity_id: light.lounge_wall
+  - service: light.turn_off
+    entity_id: light.cinema_porch
+  - service: light.turn_off
+    entity_id: light.cinema_front
+  - service: light.turn_off
+    entity_id: light.cinema_back
+  - service: light.turn_off
+    entity_id: light.front_porch
+  - service: light.turn_off
+    entity_id: light.hallway_main
+  - service: light.turn_off
+    entity_id: light.landing_main
+  - service: light.turn_off
+    entity_id: light.master_bedroom_main
+  - service: light.turn_off
+    entity_id: light.guest_bedroom_main
+  - service: light.turn_off
+    entity_id: light.ensuite_main
+  - service: light.turn_off
+    entity_id: light.bedroom_2_main
+  - service: light.turn_off
+    entity_id: light.bedroom_3_main
+  - service: light.turn_off
+    entity_id: light.loft_main
